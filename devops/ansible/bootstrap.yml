@@ -1,0 +1,17 @@
+---
+- hosts: all
+  user: "{{ deploy.user }}"
+  sudo: true
+  vars_files:
+    - vars/defaults.yml
+
+  roles:
+    - system
+    - common
+    - ruby-common
+    - mysql
+    - chruby
+    - rails
+    - nginx-puma
+    #- redis
+    #- sidekiq

@@ -1,0 +1,34 @@
+- name: Download ruby-install src archive
+  get_url: url={{ ruby_install_url }}
+           dest={{ ruby_install_archive }}
+           force=no
+
+- name: Extract ruby-install src
+  command: tar -xzf {{ ruby_install_archive }} chdir={{ ruby_install_src_dir }} creates={{ ruby_install_src_path }}
+
+- name: Install ruby-install
+  command: make install chdir={{ ruby_install_src_path }} creates=/usr/local/bin/ruby-install
+
+- name: Install ruby
+  command: ruby-install --rubies-dir {{ ruby.rubies_dir }} ruby {{ ruby.version }} creates={{ ruby.rubies_dir }}/ruby-{{ ruby.version }}
+
+- name: Download chruby src archive
+  get_url: url={{ chruby_url }}
+           dest={{ chruby_archive }}
+           force=no
+
+- name: Extract chruby src
+  command: tar -xzf {{ chruby_archive }} chdir={{ chruby_src_dir }} creates={{ chruby_src_path }}
+
+- name: Install chruby
+  command: make install chdir={{ chruby_src_path }} creates=/usr/local/share/chruby/chruby.sh
+
+- name: Set chruby profile
+  template: src=chruby.sh
+            dest=/etc/profile.d/chruby.sh
+            owner=root
+            group=root
+            mode=755
+
+- name: Install Bundler
+  command: bash -lc 'gem install bundler --no-rdoc --no-ri'

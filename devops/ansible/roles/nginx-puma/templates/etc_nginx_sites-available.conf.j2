@@ -1,0 +1,40 @@
+upstream {{ rails.app }} {
+  server unix://{{deploy.directory}}/shared/tmp/sockets/puma.sock;
+}
+
+server {
+  gzip on;
+  listen 80;
+
+  gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/json;
+
+  {% for domain in rails.domains %}
+  server_name {{ domain }};
+  {% endfor %}
+
+  root {{ deploy.directory }}/current/public;
+
+  location / {
+    proxy_pass http://{{ rails.app }}; # match the name of upstream directive which is defined above
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_read_timeout 150;
+  }
+
+  location /robots.txt {}
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires 1y;
+    log_not_found off;
+  }
+
+  location ~ ^/(assets|images|javascripts|stylesheets|swfs|system)/ {
+    gzip_static on;
+    expires     max;
+    add_header  Cache-Control public;
+    add_header  Last-Modified "";
+    add_header  ETag "";
+
+    break;
+  }
+}

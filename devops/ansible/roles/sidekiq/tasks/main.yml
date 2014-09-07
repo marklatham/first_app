@@ -1,0 +1,4 @@
+- name: Install sidekiq as a service
+  template: src=sidekiq.conf.j2 dest=/etc/init/sidekiq.conf
+  notify:
+   - restart sidekiq

@@ -1,0 +1,11 @@
+[local]
+localhost ansible_python_interpreter=/usr/local/bin/python
+
+[www]
+votermedia.info
+
+
+[staging]
+
+[launched]
+# just created instances will be added here by ec2.yml

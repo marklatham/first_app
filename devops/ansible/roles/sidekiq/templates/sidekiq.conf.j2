@@ -1,0 +1,22 @@
+# /etc/init/sidekiq.conf - Sidekiq config
+
+# sudo service sidekiq {start,stop,restart,status}
+
+description "Sidekiq Background Worker"
+
+start on runlevel [2345]
+stop on (stopping workers or runlevel [06])
+
+# change to match your deployment user
+setuid {{ deploy.user }}
+setgid {{ deploy.group }}
+
+
+# TERM and USR1 are sent by sidekiqctl when stopping sidekiq.
+# Without declaring these as normal exit codes, it just respawns.
+normal exit 0 TERM USR1
+
+script
+cd {{deploy.directory}}/current
+bash -lc "exec bundle exec sidekiq -e {{ rails.env }} -C config/sidekiq.yml -i 0"
+end script

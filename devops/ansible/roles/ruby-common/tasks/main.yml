@@ -1,0 +1,39 @@
+---
+- name: install ruby dependencies
+  action: apt pkg={{item}} state=installed
+  with_items:
+    - build-essential
+    - automake
+    - bison
+    - autoconf
+    - pkg-config
+    - libreadline6
+    - libreadline6-dev
+    - openssl
+    - libssl-dev
+    - curl
+    - libcurl4-openssl-dev
+    - git-core
+    - zlib1g
+    - zlib1g-dev
+    - libssl-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - libc6-dev
+    - libncurses5-dev
+    - ruby{{ ruby.dev_version }}-dev
+    - python-software-properties
+    - apt-transport-https
+    - ca-certificates
+    - monit
+
+- name: Install app dependencies
+  action: apt pkg={{item}} state=installed
+  with_items:
+    - libpq-dev
+    - libmysqlclient-dev
+    - nodejs
+    - imagemagick
+    - libmagickwand-dev

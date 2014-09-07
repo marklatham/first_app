@@ -1,0 +1,67 @@
+rails:
+  env: production
+  app: www.infocoop
+  domains:
+  - votermedia.info
+
+deploy:
+  directory: /var/www/{{ rails.app }}
+  user: deploy
+  group: deploy
+
+db:
+  name: infocoop
+  user: infocoop
+  password: userpassword
+  adapter: mysql2
+
+mysql:
+  service: mysql
+  conf_dir: "/etc/mysql/"
+  port: 3306
+  bind_address: "0.0.0.0"
+  root_db_pass: rootpassword
+
+  db_id: 7
+  db:
+   - name: "{{ db.name }}"
+     replicate: no
+  users:
+   - name: "{{ db.user }}"
+     password: "{{ db.password }}"
+     host: localhost
+     priv: "*.*:ALL"
+  repl_role: master
+
+redis:
+  service: redis-server
+
+puma:
+  service: puma-manager
+
+nginx:
+  service: nginx
+
+ruby:
+  version: 2.1.2
+  dev_version: 2.0
+  rubies_dir: /opt/rubies
+
+ruby_install_src_dir: /usr/local/src
+ruby_install_version: 0.4.3
+ruby_install_archive: "{{ ruby_install_src_dir }}/ruby-install-{{ ruby_install_version }}.tar.gz"
+ruby_install_url: https://github.com/postmodern/ruby-install/archive/v{{ ruby_install_version }}.tar.gz
+ruby_install_src_path: "{{ ruby_install_src_dir }}/ruby-install-{{ ruby_install_version }}"
+
+chruby_src_dir: /usr/local/src
+chruby_version: 0.3.8
+chruby_archive: "{{ chruby_src_dir }}/chruby-{{ chruby_version }}.tar.gz"
+chruby_url: https://github.com/postmodern/chruby/archive/v{{chruby_version}}.tar.gz
+chruby_src_path: "{{ chruby_src_dir }}/chruby-{{ chruby_version}}"
+
+## deploy user
+pubkey_path: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+swap:
+  file_path: /swapfile
+  file_size_mb: 1024

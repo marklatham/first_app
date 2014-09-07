@@ -1,0 +1,28 @@
+- name: Create deployment directory
+  file: path={{deploy.directory}} owner={{deploy.user}} group={{deploy.group}} state=directory
+
+- name: Prepare shared directory
+  file: path={{deploy.directory}}/shared owner={{deploy.user}} group={{deploy.group}} state=directory
+
+- name: Make shared directories
+  file: path={{deploy.directory}}/shared/{{item}} owner={{deploy.user}} group={{deploy.group}} state=directory
+  with_items:
+    - tmp
+    - log
+    - public
+    - bundle
+    - bin
+    - config
+  tags: shared
+
+- name: Install database.yml
+  template: src=database.yml.j2 dest={{deploy.directory}}/shared/config/database.yml force=yes mode=755 owner={{deploy.user}} group={{deploy.group}}
+
+- name: Install secrets.yml
+  template: src=secrets.yml.j2 dest={{deploy.directory}}/shared/config/secrets.yml force=yes mode=755 owner={{deploy.user}} group={{deploy.group}}
+
+- name: Install .env # If you are using dotenv
+  template: src=.env.j2 dest={{deploy.directory}}/shared/.env force=yes mode=755 owner={{deploy.user}} group={{deploy.group}}
+
+
+# cp shared/.env, shared/config/secrets.yml
