@@ -11,6 +11,10 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 set :keep_releases, 3
 set :chruby_ruby, "2.1.2"
 
+set :ssh_options, {
+  forward_agent: true,
+}
+
 namespace :deploy do
 
   desc "Restart application"
