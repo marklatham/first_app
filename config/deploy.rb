@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, "infocoop"
-set :repo_url, "git@github.com:marklatham/first_app.git"
+set :repo_url, "git@github.com:marklatham/infocoop.git"
 set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 
 set :linked_files, %w{config/database.yml config/puma.rb .env}
