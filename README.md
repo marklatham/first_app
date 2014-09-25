@@ -1,13 +1,13 @@
 # Information Co-op
 
 
-# Introduction
+## Introduction
 
 [This website](http://votermedia.info) is for an information users’ cooperative, to develop and manage an online system for buying and selling information. This could be useful for a broad range of types of information. As an example and starting point, we could consider info helpful to retail consumers in a given city such as Vancouver, Canada: E.g. where are the best bargains today on telecom services, banking, gasoline or whatever? There are free websites with info like this, but paying for it should generate more useful info.
 
 For details, please see [*Info Co-op Outline*](http://votermedia.org/publications/InfoCoopOutline.pdf).
 
-# License
+## License
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License version 3
@@ -20,6 +20,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 [GNU Affero General Public License](http://www.gnu.org/licenses/) for more details.
 
-# Contact
+## Contact
 
 If you would like to help with this project (thanks!), please [contact us](http://votermedia.org/about_contact).
