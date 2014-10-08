@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'therubyracer'
 gem 'devise'
+gem 'bootstrap-sass'
 
 # create cron jobs
 gem 'whenever', require: false
@@ -40,6 +41,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-chruby'
+  gem 'rails_layout'
 end
 
 group :development, :test do
