@@ -42,6 +42,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-chruby'
   gem 'rails_layout'
+  gem 'rails_apps_pages'
 end
 
 group :development, :test do
