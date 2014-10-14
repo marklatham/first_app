@@ -206,6 +206,8 @@ GEM
       pry (>= 0.9.10)
     puma (2.9.1)
       rack (>= 1.1, < 2.0)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -374,6 +376,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   puma
+  pundit
   rails (= 4.1)
   rails-footnotes (>= 4.0.0, < 5)
   rails_apps_pages
