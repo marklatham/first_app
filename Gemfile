@@ -18,6 +18,7 @@ gem 'therubyracer'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'pundit'
+gem 'rolify'
 
 # create cron jobs
 gem 'whenever', require: false

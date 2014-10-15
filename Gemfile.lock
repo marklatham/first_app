@@ -247,6 +247,7 @@ GEM
     request_store (1.0.8)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    rolify (3.4.1)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -381,6 +382,7 @@ DEPENDENCIES
   rails-footnotes (>= 4.0.0, < 5)
   rails_apps_pages
   rails_layout
+  rolify
   rspec
   rspec-mocks
   rspec-rails (~> 3.0.0)
