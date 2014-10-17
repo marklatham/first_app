@@ -1,14 +1,11 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
-
 gem 'rails', '4.1'
-
+gem 'dotenv-rails'
 gem 'mysql2'
 gem 'puma'
-
 gem 'draper'
 gem 'virtus'
-
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -20,14 +17,13 @@ gem 'carrierwave'
 gem 'therubyracer'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'pundit'
+gem 'rolify'
 
 # create cron jobs
 gem 'whenever', require: false
 
 gem 'activeadmin', github: 'gregbell/active_admin'
-
-# loan .env to ENV
-gem 'dotenv-rails'
 
 # Debugging
 gem 'rails-footnotes', '>= 4.0.0', '<5'

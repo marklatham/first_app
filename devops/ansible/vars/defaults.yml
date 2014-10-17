@@ -2,7 +2,7 @@ rails:
   env: production
   app: www.infocoop
   domains:
-  - votermedia.info
+  - vaninfocoop.ca
 
 deploy:
   directory: /var/www/{{ rails.app }}
