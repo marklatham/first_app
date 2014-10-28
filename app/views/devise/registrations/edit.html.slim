@@ -9,8 +9,8 @@ div class="authform"
         div Currently waiting confirmation for: <%= resource.unconfirmed_email
     fieldset
       div class="form-group"
-        = f.label :please_email_me_monthly_updates_about_this_coop
-        = f.check_box :email_monthly, class: 'form-control'
+        = f.check_box :email_monthly
+        b  Optional: Please email me monthly updates about this co-op
     fieldset
       p Leave these two blank unless you want to change your password:
       div class="form-group"
