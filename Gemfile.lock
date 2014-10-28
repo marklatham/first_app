@@ -15,6 +15,15 @@ GIT
       ransack (~> 1.3)
       sass-rails
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 932619c180f90c5aebbb23f4d92fa254b430c775
+  branch: master
+  specs:
+    simple_form (3.1.0.rc2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -182,7 +191,7 @@ GEM
       railties (>= 3.0.0, < 5.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    minitest (5.4.1)
+    minitest (5.4.2)
     multi_json (1.10.1)
     mysql2 (0.3.16)
     net-scp (1.2.1)
@@ -277,9 +286,6 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
-    simple_form (3.0.2)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -388,7 +394,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.0)
   sdoc (= 0.3.20)
-  simple_form
+  simple_form (~> 3.1.0.rc1)!
   slim-rails (= 2.1.4)
   therubyracer
   turbolinks
