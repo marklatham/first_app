@@ -17,6 +17,7 @@ gem 'carrierwave'
 gem 'therubyracer'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'     # Recommended with bootstrap-sass
 gem 'pundit'
 gem 'rolify'
 
