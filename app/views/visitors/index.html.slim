@@ -6,11 +6,6 @@ p A competitive market for information that empowers you --
 p 
   | See our plans in:
   ul
-    li = link_to('FAQ', faq_path)
-    li = link_to('Info Co-op Outline', '/pdf/InfoCoopOutline.pdf')
-    li
-      | Draft 
-      = link_to('Memo of Association', '/pdf/VICdraftMoA.pdf')
-      |  and 
-      = link_to('Rules', '/pdf/VICdraftRules.pdf')
-      |  for the co-op
+    li = link_to 'FAQ', faq_path
+    li = link_to 'Info Co-op Outline', '/pdf/InfoCoopOutline.pdf'
+    li Draft #{link_to 'Memo of Association', '/pdf/VICdraftMoA.pdf'} and #{link_to 'Rules', '/pdf/VICdraftRules.pdf'} for the co-op

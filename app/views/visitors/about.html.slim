@@ -3,21 +3,16 @@
 h2 About the Vancouver Info Co-op Project
 br
 
-p We are planning to create the Vancouver Info Co-op, to empower people in #{link_to('Metro Vancouver', 'http://en.wikipedia.org/wiki/Metro_Vancouver')} with better information. We expect it to start with info on how to save money on things like cell phone plans, banking, and groceries. But the types of info provided will be guided by member-voted funding.
+p We are planning to create the Vancouver Info Co-op, to empower people in #{link_to 'Metro Vancouver', 'http://en.wikipedia.org/wiki/Metro_Vancouver'} with better information. We expect it to start with info on how to save money on things like cell phone plans, banking, and groceries. But the types of info provided will be guided by member-voted funding.
 
 p This website will become the co-op's platform and member interface. Here, anyone will be able to create an information "channel". Co-op members will vote to allocate funds to channels they like. Members will pay a monthly fee (e.g. $1) for access to the channels.
 
 p 
   | For more detail, please see:
   ul
-    li = link_to('FAQ', faq_path)
-    li = link_to('Info Co-op Outline', '/pdf/InfoCoopOutline.pdf')
-    li
-      | Draft 
-      = link_to('Memo of Association', '/pdf/VICdraftMoA.pdf')
-      |  and 
-      = link_to('Rules', '/pdf/VICdraftRules.pdf')
-      |  for the co-op
+    li = link_to 'FAQ', faq_path
+    li = link_to 'Info Co-op Outline', '/pdf/InfoCoopOutline.pdf'
+    li Draft #{link_to 'Memo of Association', '/pdf/VICdraftMoA.pdf'} and #{link_to 'Rules', '/pdf/VICdraftRules.pdf'} for the co-op
 br
 
 h2 Contacts:

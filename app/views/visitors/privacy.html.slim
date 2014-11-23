@@ -5,89 +5,77 @@ h2 Privacy Policy for Vaninfocoop.ca Website
 p
   i
     | "You may have my number, you can take my name, but you'll never have my heart." -- 
-    = link_to("Adele", "https://www.youtube.com/watch?v=DeumyOzKqgI")
+    = link_to "Adele", "https://www.youtube.com/watch?v=DeumyOzKqgI"
 
 p Well, we want your heart too. That's why we protect your data with care. Our privacy policy expresses that in more detail:
 
 p Vaninfocoop.ca is part of a nonprofit project to create the Vancouver Info Co-op. Our goal is to make a truly democratic organization that can be trusted to serve its members. This starts with protecting the privacy of members and prospective members who use this website.
 
-p
-  | Our current Privacy Policy is published and updated here at 
-  = link_to('vaninfocoop.ca/privacy', privacy_url) + '. '
-  | Revisions to this policy are announced at 
-  = link_to('vaninfocoop.wordpress.com', 'http://vaninfocoop.wordpress.com') + '.'
+p Our current Privacy Policy is published and updated here at #{link_to 'vaninfocoop.ca/privacy', privacy_path}. Revisions to this policy are announced at #{link_to 'vaninfocoop.wordpress.com', 'http://vaninfocoop.wordpress.com'}.
 
 p
   | Our Privacy Policy is developed, updated and implemented to conform with the 
   b British Columbia Personal Information Protection Act 
   | and with 
-  b = link_to("Canada's Anti-Spam Legislation", 'http://fightspam.gc.ca/eic/site/030.nsf/eng/home')
+  b = link_to "Canada's Anti-Spam Legislation", 'http://fightspam.gc.ca/eic/site/030.nsf/eng/home'
   | . We send email via 
-  = link_to('SendGrid', 'http://sendgrid.com')
+  = link_to 'SendGrid', 'http://sendgrid.com'
   |  subject to their 
-  = link_to('anti-spam terms', 'https://sendgrid.com/tos') 
+  = link_to 'anti-spam terms', 'https://sendgrid.com/tos'
   | . Our Privacy Policy is organized around ten internationally recognized principles as follows:
 
 ol
   li
     b Accountability: 
-    span Our Privacy Officer is Mark Latham, email vaninfocoop[at]gmail.com.
+    | Our Privacy Officer is Mark Latham, email vaninfocoop[at]gmail.com.
 
   li
     b Purposes: 
-    span When (or before) we collect your personal information, we inform you why it is needed and how it will be used. If we later want to use it in other ways, we will first inform you and ask for your consent.
+    | When (or before) we collect your personal information, we inform you why it is needed and how it will be used. If we later want to use it in other ways, we will first inform you and ask for your consent.
 
     ul style='list-style-type:disc'
-      li style='margin-top:0.7em'
-        | We use your email address to contact you when necessary. You may also subscribe to news updates.
-
-      li If you join our co-op, we use your personal information to fulfill the requirements of the British Columbia Cooperative Association Act.
+      li We use your email address to contact you when necessary. You may also subscribe to news updates.
+      li style='margin-bottom:0.5em' If you join our co-op, we use your personal information to fulfill the requirements of the British Columbia Cooperative Association Act.
 
   li
     b Consent: 
-    span We will only collect, use or disclose your personal information with your consent (unless the law requires otherwise), which may be expressed, implied, opt-in or opt-out as is reasonable in the context. Your consent is not a condition for any of our services unless the information is required to provide that service. You may withdraw your consent at any time, in which case we would tell you the likely consequences of withdrawing consent.
+    | We will only collect, use or disclose your personal information with your consent (unless the law requires otherwise), which may be expressed, implied, opt-in or opt-out as is reasonable in the context. Your consent is not a condition for any of our services unless the information is required to provide that service. You may withdraw your consent at any time, in which case we would tell you the likely consequences of withdrawing consent.
 
   li
     b Limited collection: 
-    span We only collect personal information that is necessary for our reasonable purposes, and we only collect it from the person it is about.
+    | We only collect personal information that is necessary for our reasonable purposes, and we only collect it from the person it is about.
 
   li
     b Limited use, disclosure and retention: 
-    span We only use or disclose your personal information for reasonable purposes that you have consented to. We only keep it as long as necessary for those purposes.
+    | We only use or disclose your personal information for reasonable purposes that you have consented to. We only keep it as long as necessary for those purposes.
 
   li
     b Accuracy: 
-    span We make reasonable efforts to ensure that your personal information is accurate and complete. We appreciate your help with this.
+    | We make reasonable efforts to ensure that your personal information is accurate and complete. We appreciate your help with this.
 
   li
     b Safeguards: 
-    span We maintain reasonable protection against unauthorized access, use or disclosure of your personal information.
+    | We maintain reasonable protection against unauthorized access, use or disclosure of your personal information.
 
   li
     b Openness: 
-    span In addition to the policy outlined here, you can ask more about our information policies, practices and purposes by sending questions to our Privacy Officer, Mark Latham, email vaninfocoop[at]gmail.com.
+    | In addition to the policy outlined here, you can ask more about our information policies, practices and purposes by sending questions to our Privacy Officer, Mark Latham, email vaninfocoop[at]gmail.com.
 
   li
     b Access: 
-    span You can check and update your personal information by logging in to vaninfocoop.ca.
+    | You can check and update your personal information by logging in to vaninfocoop.ca.
 
   li
     b Recourse: 
-    span If you have a complaint or concern about our use of your personal information, we recommend that you take this sequence of steps as far as you consider necessary:
+    | If you have a complaint or concern about our use of your personal information, we recommend that you take this sequence of steps as far as you consider necessary:
 
     ul style='list-style-type:disc'
-      li style='margin-top:0.7em'
-        | Contact our Privacy Officer, Mark Latham, email vaninfocoop[at]gmail.com. He will investigate and respond to all complaints received.
+      li Contact our Privacy Officer, Mark Latham, email vaninfocoop[at]gmail.com. He will investigate and respond to all complaints received.
 
-      li
-        | Contact any others on 
-        = link_to 'our project team', about_url
-        | .
+      li Contact any others on #{link_to 'our project team', about_url}.
 
       li Contact any of the co-op's info channels.
 
       li Start an info channel critiquing our information practices, and enter it in our co-op's funding competition.
 
-      li
-        | Contact the 
-        = link_to("British Columbia Information and Privacy Commissioner's Office", 'https://www.oipc.bc.ca/for-the-public/how-do-i-make-a-complaint.aspx') + '.'
+      li Contact the #{link_to "British Columbia Information and Privacy Commissioner's Office", 'https://www.oipc.bc.ca/for-the-public/how-do-i-make-a-complaint.aspx'}.
