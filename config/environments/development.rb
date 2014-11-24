@@ -44,3 +44,6 @@ Infocoop::Application.configure do
   config.action_mailer.perform_deliveries = true
 
 end
+
+# Indent html for pretty debugging and do not sort attributes
+Slim::Engine.set_default_options pretty: true, sort_attrs: false
