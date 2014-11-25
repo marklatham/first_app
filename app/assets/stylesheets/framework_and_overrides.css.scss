@@ -44,3 +44,11 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+/////////// Customize for vaninfocoop.ca: ///////////
+
+// Unordered and Ordered lists
+
+li {
+  margin-bottom: ($line-height-computed / 4);
+}
