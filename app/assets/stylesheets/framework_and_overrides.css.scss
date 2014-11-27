@@ -1,3 +1,49 @@
+/////////// Customize variables for vaninfocoop.ca ///////////
+
+//== Colors
+$gray-darker:            lighten(#000, 13.5%) !default; // #222
+$gray-dark:              lighten(#000, 20%) !default;   // #333
+$gray:                   lighten(#000, 33.5%) !default; // #555
+$gray-light:             lighten(#000, 46.7%) !default; // #777
+$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+$blue-dark:              #039;
+$blue:                   #03c;
+$mango:                  #f90;
+$mango-dark:             darken(#f90, 10%);
+
+//== Scaffolding
+$text-color:            $gray-darker;
+$link-color:            $blue;
+$link-hover-color:      $mango-dark;
+
+// Navbar
+$navbar-margin-bottom:  0;
+
+// Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-color:                      $gray-lighter;
+$navbar-inverse-bg:                         $blue-dark;
+$navbar-inverse-border:                     $mango;
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 $gray-lighter;
+$navbar-inverse-link-hover-color:           $mango;
+$navbar-inverse-link-hover-bg:              $blue;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
+$navbar-inverse-link-disabled-color:        #444 !default;
+$navbar-inverse-link-disabled-bg:           transparent !default;
+
+// Inverted navbar brand label
+$navbar-inverse-brand-color:                $navbar-inverse-link-color !default;
+$navbar-inverse-brand-hover-color:          $mango;
+$navbar-inverse-brand-hover-bg:             $blue;
+
+// Inverted navbar toggle
+$navbar-inverse-toggle-hover-bg:            $blue;
+$navbar-inverse-toggle-icon-bar-bg:         #fff !default;
+$navbar-inverse-toggle-border-color:        $mango;
+
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -45,10 +91,14 @@ section {
   margin-top: 20px;
   }
 
-/////////// Customize for vaninfocoop.ca: ///////////
+/////////// Customize styles for vaninfocoop.ca: ///////////
+
+// Navbar
+.navbar-fixed-top {
+  border-bottom-width: 3px;
+}
 
 // Unordered and Ordered lists
-
 li {
   margin-bottom: ($line-height-computed / 4);
 }
