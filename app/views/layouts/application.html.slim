@@ -4,10 +4,8 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1.0"]
     title= (content_for?(:title) ? yield(:title)+' | ' : '') + 'Vancouver Info Co-op'
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Vancouver Info Co-op'}"
-    link href=image_path("logo57x57.png") rel="apple-touch-icon-precomposed" sizes="57x57"
-    link href=image_path("logo76x76.png") rel="apple-touch-icon-precomposed" sizes="76x76"
     link href=image_path("logo114x114.png") rel="apple-touch-icon-precomposed" sizes="114x114"
-    link href=image_path("logo157x157.png") rel="apple-touch-icon-precomposed" sizes="157x157"
+    link href=image_path("logo144x144.png") rel="apple-touch-icon-precomposed" sizes="144x144"
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
     == csrf_meta_tags
