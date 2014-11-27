@@ -7,9 +7,15 @@ li.dropdown
     li = link_to 'FAQ', faq_path
     li = link_to 'Privacy', privacy_path
     li = link_to 'Terms', terms_path
+    li = link_to 'Home', root_path
 - if user_signed_in?
-  li = link_to 'Edit account', edit_user_registration_path
-  li = link_to 'Log out', destroy_user_session_path, :method=>'delete'
+  li.dropdown
+    a.dropdown-toggle[data-toggle="dropdown"]
+      = current_user.email
+      b.caret
+    ul.dropdown-menu
+      li = link_to 'Log out', destroy_user_session_path, :method=>'delete'
+      li = link_to 'Edit account', edit_user_registration_path
 - else
   li.dropdown
     a.dropdown-toggle[data-toggle="dropdown"]
