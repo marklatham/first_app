@@ -14,7 +14,7 @@ $mango-dark:             darken(#f90, 10%);
 //== Scaffolding
 $text-color:            $gray-darker;
 $link-color:            $blue;
-$link-hover-color:      $mango-dark;
+$link-hover-color:      $mango;
 
 // Navbar
 $navbar-margin-bottom:  0;
@@ -37,7 +37,6 @@ $navbar-inverse-link-disabled-bg:           transparent !default;
 // Inverted navbar brand label
 $navbar-inverse-brand-color:                $mango;
 $navbar-inverse-brand-hover-color:          $mango;
-$navbar-inverse-brand-hover-bg:             $blue;
 
 // Inverted navbar toggle
 $navbar-inverse-toggle-hover-bg:            $blue;
@@ -97,6 +96,15 @@ section {
   border-bottom-width: 3px;
 }
 
+// Footer
+.footer {
+  border-top: 3px solid $mango;
+  border-radius: 0;
+  ul {
+    margin-left: $navbar-padding-horizontal;
+  }
+}
+
 // Unordered and Ordered lists
 li {
   margin-bottom: ($line-height-computed / 4);
@@ -105,7 +113,6 @@ li {
 ////// Inverse navbar //////
 
 .navbar-inverse {
-
   .navbar-brand {
     > a {
       font-family: 'Lobster', cursive;
