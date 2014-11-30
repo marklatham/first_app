@@ -5,8 +5,7 @@ br
 
 h4 1. Who is organizing the Vancouver Info Co-op?
 
-p The people listed on our #{link_to('About/Contact page', 'http://vaninfocoop.ca/about')},
-  as well as others who will be listed there soon.
+p The people listed on our #{link_to('About/Contact page', '/about')}.
 
 h4 2. Why are you doing this?
 
@@ -14,15 +13,26 @@ p We want to make a better world by empowering people with information. Large or
 
 p An information co-op can be a first step in that direction. In its early stages, it can help members save money. As membership grows, the increasing pool of funds could buy other types of info like entertainment and software. Meanwhile, the co-op can set an example for how we could better inform voters in democracies and shareowners of corporations.
 
-h4 3. How much will this cost?
+h4 3. How much will it cost?
 
 p Our initial plan is for each member to pay $1 a month into a pool for buying information. We will give an open invitation for providers of information to the co-op. Members will vote to divide the funding pool among the providers, giving them an incentive to provide useful information. We will kickstart this process with donated funds.
 
 h4 4. How can I find out more about this info co-op plan?
 
 ul
-  li Read the #{link_to('Info Co-op Outline', 'http://votermedia.org/publications/InfoCoopOutline.pdf')}.
-  li Visit this website again in a few weeks. By then we should have a news signup option.
-  li Email vaninfocoop[at]gmail.com.
+  li Read the #{link_to('Info Co-op Outline', '/pdf/InfoCoopOutline.pdf')}.
+  li 
+    - if user_signed_in?
+      - if current_user.email_monthly
+        | Read our monthly email updates which 
+        = link_to 'you\'ve signed up for', edit_user_registration_path
+      - else
+        | Check the box for monthly updates when you 
+        = link_to 'edit your account here', edit_user_registration_path
+    - else
+      | Check the box for monthly updates when you 
+      = link_to 'register for a free login', new_user_registration_path
+    | .
+  li Email your questions to vaninfocoop[at]gmail.com.
   
 h5 Thanks for your interest!

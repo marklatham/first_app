@@ -98,7 +98,8 @@ section {
 
 // Footer
 .footer {
-  border-top: 3px solid $mango;
+  border-width: 3px 0 0 0;
+  border-top: solid $mango;
   border-radius: 0;
   ul {
     margin-left: $navbar-padding-horizontal;
