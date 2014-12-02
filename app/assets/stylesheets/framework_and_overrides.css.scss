@@ -102,8 +102,16 @@ section {
   border-top: solid $mango;
   border-radius: 0;
   ul {
-    margin-left: $navbar-padding-horizontal;
+    margin: 0 0 0 2*$navbar-padding-horizontal;
+    li {
+      margin-bottom: 0;
+    }
   }
+}
+
+.border-3-10 {
+  border-radius: 10px;
+  border: 3px solid $mango;
 }
 
 // Unordered and Ordered lists
