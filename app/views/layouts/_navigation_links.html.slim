@@ -1,5 +1,5 @@
 li.dropdown
-  a.dropdown-toggle[data-toggle="dropdown"]
+  a.dropdown-toggle[data-toggle="dropdown" href="#"]
     | About
     b.caret
   ul.dropdown-menu
@@ -10,7 +10,7 @@ li.dropdown
     li = link_to 'Home', root_path
 - if user_signed_in?
   li.dropdown
-    a.dropdown-toggle[data-toggle="dropdown"]
+    a.dropdown-toggle[data-toggle="dropdown" href="#"]
       = current_user.email
       b.caret
     ul.dropdown-menu
@@ -18,7 +18,7 @@ li.dropdown
       li = link_to 'Edit account', edit_user_registration_path
 - else
   li.dropdown
-    a.dropdown-toggle[data-toggle="dropdown"]
+    a.dropdown-toggle[data-toggle="dropdown" href="#"]
       | Login
       b.caret
     ul.dropdown-menu
