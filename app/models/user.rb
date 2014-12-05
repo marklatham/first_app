@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+  has_many :posts
+
   def name
     [first_name, last_name].compact.join(' ')
   end
