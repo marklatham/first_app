@@ -20,6 +20,8 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'     # Recommended with bootstrap-sass
 gem 'pundit'
 gem 'rolify'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # create cron jobs
 gem 'whenever', require: false
