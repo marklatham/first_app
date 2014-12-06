@@ -1,4 +1,4 @@
-- content_for :title, 'Log in'
+- provide :title, 'Log in'
 
 div class="authform"
   = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
