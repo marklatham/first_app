@@ -1,0 +1,14 @@
+- provide(:title, @user.email) if @user.email
+
+div.row
+  aside.col-md-4
+    section.user_info
+      h2
+        | User: 
+        = @user.email if @user.email
+  .col-md-8
+    - if @user.posts.any?
+      h3 Posts (#{@user.posts.count})
+      ol.posts
+        = render @posts
+      = will_paginate @posts

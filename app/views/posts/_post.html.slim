@@ -1,0 +1,8 @@
+li id="post-#{post.id}"
+  h4.title = post.title
+  p.content = post.content
+  em.timestamp Posted #{time_ago_in_words(post.created_at)} ago.
+  br
+  br
+
+//  span.user = link_to post.user.email, post.user
