@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post created!"
-      redirect_to root_url
+      redirect_to current_user
     else
       flash[:alert] = "Sorry, couldn't create post. Try again?"
       render 'posts/new'
