@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user,   only: :destroy
+  before_action :correct_user,   only: [:update, :destroy]
 
 #  after_action :verify_authorized
 
@@ -20,6 +20,20 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Post updated!"
+    else
+      flash[:alert] = "Sorry, couldn't update post. Try again?"
+    end
+    redirect_to @post
+  end
+
+  def edit
     @post = Post.find(params[:id])
   end
 

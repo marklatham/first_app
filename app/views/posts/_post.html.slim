@@ -3,6 +3,11 @@ li id="post-#{post.id}"
   p.content = post.content
   p = link_to "See full post", post_path(id: post)
   em.timestamp Posted #{time_ago_in_words(post.created_at)} ago.
+  - if post.updated_at > post.created_at
+    br
+    em.timestamp Updated #{time_ago_in_words(post.updated_at)} ago.
   br
   - if current_user == post.user
+    = link_to "edit", edit_post_path(id: post)
+    |  | 
     = link_to "delete", post, method: :delete, data: {confirm: "You sure?"}
