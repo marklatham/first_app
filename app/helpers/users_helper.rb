@@ -1,5 +1,13 @@
 module UsersHelper
 
+  def handle(user)
+    if user.name.present?
+      user.name
+    else
+      truncate(user.email, length: 8, omission: "...")
+    end
+  end
+
   # Returns the Gravatar (http://gravatar.com/) for the given user.
   def gravatar_for(user, options = { size: 60 })
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)

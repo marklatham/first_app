@@ -1,4 +1,4 @@
-- provide(:title, @user.email) if @user.email
+- provide :title, handle(@user)
 
 div.row
   aside.col-md-4
@@ -7,10 +7,7 @@ div.row
         | User:
         = gravatar_for @user
         br
-        - if @user.name.present?
-          = @user.name
-        - else
-          = @user.email if @user.email.present?
+        = handle(@user)
   .col-md-8
     - if @user.posts.any?
       h3 Posts (#{@user.posts.count})
