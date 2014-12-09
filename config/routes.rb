@@ -3,7 +3,7 @@ Infocoop::Application.routes.draw do
   devise_for :users, :path => '', :path_names => {:sign_up => 'register', :sign_in => 'login', :sign_out => 'logout'},
              :controllers => { registrations: 'registrations' }
   resources :users
-  resources :posts,       only: [:new, :create, :edit, :update]
+  resources :posts
   get '/about',           :to => 'visitors#about',           :as => :about
   get '/faq',             :to => 'visitors#faq',             :as => :faq
   get '/privacy',         :to => 'visitors#privacy',         :as => :privacy
