@@ -1,0 +1,9 @@
+- provide :title, @post.title
+
+div id="post-#{@post.id}"
+  h3.title = @post.title
+  p.content = @post.content
+  em.timestamp Posted by #{@post.user.email} #{time_ago_in_words(@post.created_at)} ago.
+  br
+  - if current_user == @post.user
+    = link_to "delete", @post, method: :delete, data: {confirm: "You sure?"}
