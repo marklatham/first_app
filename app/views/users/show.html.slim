@@ -4,8 +4,13 @@ div.row
   aside.col-md-4
     section.user_info
       h2
-        | User: 
-        = @user.email if @user.email
+        | User:
+        = gravatar_for @user
+        br
+        - if @user.name.present?
+          = @user.name
+        - else
+          = @user.email if @user.email.present?
   .col-md-8
     - if @user.posts.any?
       h3 Posts (#{@user.posts.count})
