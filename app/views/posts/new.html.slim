@@ -9,4 +9,8 @@ div class="authform"
     div class="form-group"
       = f.label :content
       = f.text_area :content, class: 'form-control'
+    div class="form-group"
+      b Publish?: 
+      = f.check_box :publish
+      |  (You can turn this on or off any time you edit the post.)
     = f.submit 'Create this post', :class => 'button right'
