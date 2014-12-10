@@ -43,6 +43,10 @@ class PostsController < ApplicationController
     redirect_to current_user || root_url
   end
 
+  def feed
+    @feed_posts = Post.where(publish: true).order('updated_at DESC')
+  end
+
   private
 
     def post_params

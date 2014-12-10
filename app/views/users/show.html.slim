@@ -12,5 +12,5 @@ div.row
     - if @user.posts.any?
       h3 Posts (#{@user.posts.count})
       ol.posts
-        = render @posts
-      = will_paginate @posts
+        = render @user_posts
+      = will_paginate @user_posts
