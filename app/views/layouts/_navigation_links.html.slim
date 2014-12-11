@@ -29,6 +29,7 @@ li.dropdown
       li = link_to 'Forgot your password?', new_user_password_path
       li = link_to "Didn't receive confirmation instructions?", new_user_confirmation_path
       li = link_to "Didn't receive unlock instructions?", new_user_unlock_path
+li = link_to 'Posts Feed', feed_path
 - if user_signed_in?
   - if current_user.admin?
     li = link_to 'List users', users_path

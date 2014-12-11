@@ -8,4 +8,5 @@ Infocoop::Application.routes.draw do
   get '/faq',             :to => 'visitors#faq',             :as => :faq
   get '/privacy',         :to => 'visitors#privacy',         :as => :privacy
   get '/terms',           :to => 'visitors#terms',           :as => :terms
+  get '/feed',            :to => 'posts#feed',               :as => :feed
 end

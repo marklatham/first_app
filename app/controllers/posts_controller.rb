@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @feed_posts = Post.where(publish: true).order('updated_at DESC')
+    @feed_posts = Post.where(publish: true).order('updated_at DESC').paginate(page: params[:page])
   end
 
   private
