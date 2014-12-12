@@ -23,14 +23,6 @@ div class="authform"
         = f.check_box :email_monthly
         b  Optional: Please email me monthly updates about this co-op
     fieldset
-      p Leave these two blank unless you want to change your password:
-      div class="form-group"
-        = f.label :password
-        = f.password_field :password, :autocomplete => 'off', class: 'form-control'
-      div class="form-group"
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: 'form-control'
-    fieldset
       p You must enter your current password to make changes:
       div class="form-group"
         = f.label :current_password
