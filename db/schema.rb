@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210154228) do
+ActiveRecord::Schema.define(version: 20141212233854) do
 
   create_table "posts", force: true do |t|
     t.text     "content"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141210154228) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.boolean  "email_monthly",          default: false, null: false
+    t.boolean  "real_name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

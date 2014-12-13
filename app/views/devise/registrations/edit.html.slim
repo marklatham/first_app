@@ -11,6 +11,9 @@ div class="authform"
       div class="form-group"
         = f.label :last_name
         = f.text_field :last_name, class: 'form-control'
+      div class="form-group"
+        = f.check_box :real_name
+        b  Above are my real first and last names. [Required for publishing posts.]
     div class="form-group"
       = f.label :email
       = f.email_field :email, class: 'form-control'
