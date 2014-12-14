@@ -96,31 +96,7 @@ section {
   border-bottom-width: 3px;
 }
 
-// Footer
-.footer {
-  border-width: 3px 0 0 0;
-  border-top: solid $mango;
-  border-radius: 0;
-  ul {
-    margin: 0 0 0 2*$navbar-padding-horizontal;
-    li {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.border-3-10 {
-  border-radius: 10px;
-  border: 3px solid $mango;
-}
-
-// Unordered and Ordered lists
-li {
-  margin-bottom: ($line-height-computed / 4);
-}
-
-////// Inverse navbar //////
-
+// Inverse navbar
 .navbar-inverse {
   .navbar-brand {
     > a {
@@ -134,4 +110,56 @@ li {
       }
     }
   }
+}
+
+// Footer
+.footer {
+  border-width: 3px 0 0 0;
+  border-top: solid $mango;
+  border-radius: 0;
+  ul {
+    margin: 0 0 0 2*$navbar-padding-horizontal;
+    li {
+      margin-bottom: 0;
+    }
+  }
+}
+// Misc
+
+.border-3-10 {
+  border-radius: 10px;
+  border: 3px solid $mango;
+}
+
+// Unordered and Ordered lists
+li {
+  margin-bottom: ($line-height-computed / 4);
+}
+
+// Posts
+
+.posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 15px 0 10px 0;
+    border-top: 1px solid $mango-dark;
+  }
+}
+.user {
+}
+.title {
+  font-weight: bold;
+  font-size: $font-size-large;
+}
+.content {
+}
+.timestamp {
+  color: $gray;
+  font-style: italic;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
 }

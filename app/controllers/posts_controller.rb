@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!, except: [:feed, :show]
   before_action :correct_user,   only: [:update, :destroy]
 
 #  after_action :verify_authorized
@@ -21,6 +21,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    unless @post.user == current_user || @post.user.admin?
+      unless @post.publish == true && @post.user.real_name == true
+        flash[:alert] = "Sorry, that post isn't viewable."
+        redirect_to feed_path
+      end
+    end
   end
 
   def update

@@ -1,11 +1,10 @@
 li id="post-#{post.id}"
-  h4.title = post.title
-  p.content = truncate(post.content, length: 50, separator: ' ')
-  p = link_to "See full post", post_path(id: post)
   = gravatar_for post.user
-  | 
-  p = handle(post.user)
-  em.timestamp Posted #{time_ago_in_words(post.created_at)} ago.
+  span.user
+      = handle(post.user)
+      |  - 
+  span.timestamp Posted #{time_ago_in_words(post.created_at)} ago. 
   - if post.updated_at > post.created_at
-    br
-    em.timestamp Updated #{time_ago_in_words(post.updated_at)} ago.
+    span.timestamp Updated #{time_ago_in_words(post.updated_at)} ago.
+  .title = link_to post.title, post_path(id: post)
+  .content = truncate(post.content, length: 80, separator: ' ')

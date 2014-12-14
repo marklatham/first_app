@@ -1,6 +1,6 @@
 - provide :title, "Posts Feed"
 
 h3 Posts Feed
-ul.posts
+ol.posts
   = render partial: 'posts/post', collection: @feed_posts
 = will_paginate @feed_posts
