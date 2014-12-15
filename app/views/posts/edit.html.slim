@@ -2,7 +2,7 @@
 
 div class="authform"
   = form_for(@post) do |f|
-    h3 Edit this post:
+    h3 Edit this post
     div class="form-group"
       = f.label :title
       = f.text_field :title, class: 'form-control'
@@ -12,5 +12,4 @@ div class="authform"
     div class="form-group"
       b Publish?: 
       = f.check_box :publish
-      |  (You can turn this on or off any time you edit the post.)
     = f.submit 'Save this updated post', :class => 'button right'

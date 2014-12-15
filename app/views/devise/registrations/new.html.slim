@@ -6,9 +6,11 @@ div class="authform"
     = devise_error_messages!
     div class="form-group"
       = f.label :email
+      | :
       = f.email_field :email, :autofocus => true, class: 'form-control'
     div class="form-group"
       = f.label :password
+      | : (6 characters or more)
       = f.password_field :password, class: 'form-control'
     div class="form-group"
       = f.check_box :email_monthly

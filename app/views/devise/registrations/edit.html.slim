@@ -13,7 +13,7 @@ div class="authform"
         = f.text_field :last_name, class: 'form-control'
       div class="form-group"
         = f.check_box :real_name
-        b  Above are my real first and last names. [Required for publishing posts.]
+        b  Above are my real first and last names. [Required for sharing published posts.]
     div class="form-group"
       = f.label :email
       = f.email_field :email, class: 'form-control'
@@ -31,6 +31,15 @@ div class="authform"
         = f.label :current_password
         = f.password_field :current_password, class: 'form-control'
     = f.submit 'Save changes', :class => 'button right'
+
+- unless gravatar?(resource)
+  h3 Want a gravatar?
+  p
+    = gravatar_for resource
+    | Would you like to show your photo (or another image) next to your posts instead of this default image? You can set that up at 
+    = link_to "en.gravatar.com", "https://en.gravatar.com/"
+    | .
+  br
 
 div class="authform"
   h3 Cancel account
