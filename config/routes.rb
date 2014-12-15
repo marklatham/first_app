@@ -1,4 +1,5 @@
 Infocoop::Application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'visitors#index'
   devise_for :users, path: '', path_names: {sign_up: 'register', sign_in: 'login', sign_out: 'logout'},
              controllers: {registrations: 'registrations'}

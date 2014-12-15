@@ -8,7 +8,7 @@ div class="authform"
       = f.text_field :title, :autofocus => true, class: 'form-control'
     div class="form-group"
       = f.label :content
-      = f.text_area :content, class: 'form-control'
+      = f.bootsy_area :content, class: 'form-control'
     div class="form-group"
       b Publish?: 
       = f.check_box :publish

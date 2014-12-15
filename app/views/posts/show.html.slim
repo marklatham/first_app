@@ -2,7 +2,7 @@
 
 div id="post-#{@post.id}"
   h3.title = @post.title
-  p.content = @post.content
+  p.content = @post.content.html_safe
   p
     em.timestamp Posted #{time_ago_in_words(@post.created_at)} ago by #{handle(@post.user)}.
     - if @post.updated_at > @post.created_at
