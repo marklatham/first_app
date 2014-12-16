@@ -1,0 +1,48 @@
+/////////// Customize variables for vaninfocoop.ca ///////////
+
+// Variables in bootstrap.scss are all set with !default option, so we can override them by
+// importing this file BEFORE importing bootstrap.scss. Thus these values below will be used
+// as inputs in bootstrap.scss styles.
+
+//== Colors
+$gray-darker:            lighten(#000, 13.5%); // #222
+$gray-dark:              lighten(#000, 20%);   // #333
+$gray:                   lighten(#000, 33.5%); // #555
+$gray-light:             lighten(#000, 46.7%); // #777
+$gray-lighter:           lighten(#000, 93.5%); // #eee
+$blue-dark:              #003680;
+$blue:                   #0030c0;
+$mango:                  #fa0;
+$mango-dark:             #f90;
+
+//== Scaffolding
+$text-color:            $gray-darker;
+$link-color:            $blue;
+$link-hover-color:      $mango-dark;
+
+// Navbar
+$navbar-margin-bottom:  0;
+
+// Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-color:                      $gray-lighter;
+$navbar-inverse-bg:                         $blue-dark;
+$navbar-inverse-border:                     $mango;
+
+// Inverted navbar links
+$navbar-inverse-link-color:                 $gray-lighter;
+$navbar-inverse-link-hover-color:           $mango;
+$navbar-inverse-link-hover-bg:              $blue;
+$navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color;
+$navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%);
+$navbar-inverse-link-disabled-color:        #444;
+$navbar-inverse-link-disabled-bg:           transparent;
+
+// Inverted navbar brand label
+$navbar-inverse-brand-color:                $mango;
+$navbar-inverse-brand-hover-color:          $mango;
+
+// Inverted navbar toggle
+$navbar-inverse-toggle-hover-bg:            $blue;
+$navbar-inverse-toggle-icon-bar-bg:         #fff;
+$navbar-inverse-toggle-border-color:        $mango;

@@ -1,0 +1,37 @@
+
+// Font for brand name in top nav
+@import url("http://fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+
+// Navbar
+.navbar-fixed-top {
+  border-bottom-width: 3px;
+}
+
+// Inverse navbar
+.navbar-inverse {
+  .navbar-brand {
+    > a {
+      font-family: 'Lobster', cursive;
+      font-size: ceil(($font-size-large * 1.25));
+      color: $navbar-inverse-brand-color;
+      &:hover,
+      &:focus {
+        color: $navbar-inverse-brand-hover-color;
+        background-color: $navbar-inverse-brand-hover-bg;
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  border-width: 3px 0 0 0;
+  border-top: solid $mango;
+  border-radius: 0;
+  ul {
+    margin: 0 0 0 2*$navbar-padding-horizontal;
+    li {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -2,8 +2,19 @@
  * This is a manifest file that'll be compiled into application.css.
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
  * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * @import works better than require -- see pivotallabs.com/structure-your-sass-files-with-import
  */
 
-@import 'framework_and_overrides';
+// Override some bootstrap variable settings:
+@import 'variables';
+
+// From vendor gems:
+@import 'bootstrap';
+@import 'bootstrap-sprockets';
 @import 'bootsy';
 
+// Custom SCSS partials:
+@import 'misc';
+@import 'navigation';
+@import 'posts';
