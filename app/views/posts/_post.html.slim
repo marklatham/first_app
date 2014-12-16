@@ -8,3 +8,4 @@ li id="post-#{post.id}"
     span.timestamp Updated #{time_ago_in_words(post.updated_at)} ago.
   .title = link_to post.title, post_path(id: post)
   .content = truncate(post.content.html_safe, length: 200, separator: ' ').html_safe
+  = render 'posts/post_controls', post: post

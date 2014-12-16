@@ -1,0 +1,9 @@
+- if current_user == post.user
+  em
+    - if post.publish?
+      | Published. | 
+    - else
+      | Not published. | 
+  = link_to "edit", edit_post_path(id: post)
+  |  | 
+  = link_to "delete", post, method: :delete, data: {confirm: "You sure?"}

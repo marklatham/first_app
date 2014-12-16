@@ -8,14 +8,4 @@ div id="post-#{@post.id}"
     - if @post.updated_at > @post.created_at
       br
       em.timestamp Updated #{time_ago_in_words(@post.updated_at)} ago by #{handle(@post.user)}.
-  - if current_user == @post.user
-    p
-      em
-        - if @post.publish?
-          | This post is published. You can unpublish it when you edit.
-        - else
-          | This post is not published. You can publish it when you edit.
-    p
-      = link_to "edit", edit_post_path(@post)
-      |  | 
-      = link_to "delete", @post, method: :delete, data: {confirm: "You sure?"}
+  = render 'posts/post_controls', post: @post
