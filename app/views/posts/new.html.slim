@@ -5,10 +5,12 @@ div class="authform"
     h3 Create a new post
     div class="form-group"
       = f.label :title
+      | :
       = f.text_field :title, :autofocus => true, class: 'form-control'
     div class="form-group"
       = f.label :content
-      = f.bootsy_area :content, class: 'form-control'
+      | :
+      = f.bootsy_area :content, class: 'form-control', rows: '15'
     div class="form-group"
       b Publish?: 
       = f.check_box :publish
