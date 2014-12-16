@@ -31,8 +31,16 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
-      flash[:notice] = "Post updated!"
+    if params[:commit] == 'Cancel unsaved changes'
+        flash[:notice] = "Unsaved changes cancelled."
+        redirect_to @post and return
+    elsif @post.update_attributes(post_params)
+      if params[:commit] == 'Save & edit more'
+        flash[:notice] = "Post saved."
+        redirect_to edit_post_path(@post) and return
+      else
+        flash[:notice] = "Post updated."
+      end
     else
       flash[:alert] = "Sorry, couldn't update post. Try again?"
     end
