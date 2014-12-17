@@ -35,9 +35,12 @@ class PostsController < ApplicationController
         flash[:notice] = "Unsaved changes cancelled."
         redirect_to @post and return
     elsif @post.update_attributes(post_params)
-      if params[:commit] == 'Save & edit more'
+      if params[:commit] == 'Save & edit more' || params[:commit] == 'Save & edit formatted'
         flash[:notice] = "Post saved."
         redirect_to edit_post_path(@post) and return
+      elsif params[:commit] == 'Save & edit html'
+        flash[:notice] = "Post saved."
+        redirect_to edit_html_path(@post) and return
       else
         flash[:notice] = "Post updated."
       end
@@ -48,6 +51,10 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def edit_html
     @post = Post.find(params[:id])
   end
 
