@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215184608) do
+ActiveRecord::Schema.define(version: 20141217214657) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141215184608) do
     t.datetime "updated_at", null: false
     t.string   "title"
     t.boolean  "publish"
+    t.boolean  "custom"
   end
 
   add_index "posts", ["user_id", "created_at", "updated_at"], name: "index_posts_on_user_id_and_created_at_and_updated_at", using: :btree
