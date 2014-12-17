@@ -10,8 +10,8 @@
 @import 'variables';
 
 // From vendor gems:
+@import 'bootstrap-sprockets'; /* Must import before bootstrap, else lose glyphicons. */
 @import 'bootstrap';
-@import 'bootstrap-sprockets';
 @import 'bootsy';
 
 // Custom SCSS partials:
