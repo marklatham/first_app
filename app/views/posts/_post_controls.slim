@@ -4,8 +4,9 @@
       | Published. | 
     - else
       | Not published. | 
-  = link_to "edit", edit_post_path(id: post)
-  |  | 
-  = link_to "edit html", edit_html_path(id: post)
+  - if post.custom?
+    = link_to "edit (html)", edit_post_path(id: post)
+  - else
+    = link_to "edit", edit_post_path(id: post)
   |  | 
   = link_to "delete", post, method: :delete, data: {confirm: "You sure?"}

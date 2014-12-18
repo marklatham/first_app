@@ -7,17 +7,4 @@ div class="authform"
       = f.label :title
       | :
       = f.text_field :title, :autofocus => true, class: 'form-control'
-    div class="form-group"
-      = f.label :content
-      | :
-      = f.bootsy_area :content, class: 'form-control', rows: '15'
-    div class="form-group"
-      b Publish?: 
-      = f.check_box :publish
-      |  (You can turn this on or off any time you edit the post.
-      - unless @post.user.real_name == true
-        |  To share your published posts, you also need to give your real name by 
-        = link_to 'editing your account', edit_user_registration_path
-        | .
-      | )
-    = f.submit 'Create this post', :class => 'button right'
+    = render 'posts/edit_post', f: f

@@ -19,6 +19,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def create
+    @post = current_user.posts.build(post_params)
+    if params[:commit] == 'Cancel unsaved changes'
+      flash[:notice] = "Unsaved changes cancelled."
+      redirect_to @post and return
+    elsif @post.save
+      update_response(@post, params); return if performed?
+    else
+      flash[:alert] = "Sorry, couldn't create post. Try again?"
+    end
+    render 'posts/new'
+  end
+
   def show
     @post = Post.find(params[:id])
     unless @post.user == current_user || @post.user.admin?
@@ -32,18 +45,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if params[:commit] == 'Cancel unsaved changes'
-        flash[:notice] = "Unsaved changes cancelled."
-        redirect_to @post and return
+      flash[:notice] = "Unsaved changes cancelled."
+      redirect_to @post and return
     elsif @post.update_attributes(post_params)
-      if params[:commit] == 'Save & edit more' || params[:commit] == 'Save & edit formatted'
-        flash[:notice] = "Post saved."
-        redirect_to edit_post_path(@post) and return
-      elsif params[:commit] == 'Save & edit html'
-        flash[:notice] = "Post saved."
-        redirect_to edit_html_path(@post) and return
-      else
-        flash[:notice] = "Post updated."
-      end
+      update_response(@post, params); return if performed?
     else
       flash[:alert] = "Sorry, couldn't update post. Try again?"
     end
@@ -71,11 +76,35 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, :content, :publish, :bootsy_image_gallery_id)
+      params.require(:post).permit(:title, :content, :publish, :bootsy_image_gallery_id, :custom)
     end
 
     def correct_user
       @post = current_user.posts.find_by(id: params[:id])
       redirect_to root_url if @post.nil?
+    end
+    
+    def update_response(post, params)
+      if params[:commit] == 'Save & edit more'
+        flash[:notice] = "Post saved."
+        redirect_to edit_post_path(post) and return
+      elsif params[:commit] == 'Convert this post to html editing'
+        post.custom = true
+        post.save
+        flash[:notice] = "Post converted."
+        redirect_to edit_post_path(post) and return
+      elsif params[:commit] == 'Dump custom html editing'
+        new_post = current_user.posts.build(post_params)
+        new_post.custom = post.custom
+        new_post.title = '[backup] ' + post.title
+        new_post.publish = false
+        new_post.save
+        post.custom = false
+        post.save
+        flash[:alert] = "Custom html dumped. Pre-dump post also saved; delete if not needed."
+        redirect_to edit_post_path(post) and return
+      else
+        flash[:notice] = "Post updated."
+      end
     end
 end

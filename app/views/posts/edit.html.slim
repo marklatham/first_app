@@ -2,22 +2,9 @@
 
 div class="authform"
   = form_for(@post) do |f|
-    h3 Edit this post
+    h3 Edit this post #{'(html)' if @post.custom?}
     div class="form-group"
       = f.label :title
       | :
       = f.text_field :title, class: 'form-control'
-    div class="form-group"
-      = f.label :content
-      | :
-      = f.bootsy_area :content, class: 'form-control', rows: '15'
-    div class="form-group"
-      b Publish?: 
-      = f.check_box :publish
-    = f.submit 'Save & edit more', class: 'button right'
-    |  &nbsp; &nbsp; 
-    = f.submit 'Save & edit html', class: 'button right'
-    |  &nbsp; &nbsp; 
-    = f.submit 'Cancel unsaved changes', class: 'button right'
-    |  &nbsp; &nbsp; 
-    = f.submit 'Save & view post', class: 'button right'
+    = render 'posts/edit_post', f: f

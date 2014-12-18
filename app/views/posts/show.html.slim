@@ -3,9 +3,12 @@
 div id="post-#{@post.id}"
   h3.title = @post.title
   p.content = @post.content.html_safe
-  p
-    em.timestamp Posted #{time_ago_in_words(@post.created_at)} ago by #{handle(@post.user)}.
-    - if @post.updated_at > @post.created_at
-      br
-      em.timestamp Updated #{time_ago_in_words(@post.updated_at)} ago by #{handle(@post.user)}.
+  = gravatar_for @post.user
+  span.user
+    = handle(@post.user)
+  br
+  span.timestamp Posted #{time_ago_in_words(@post.created_at)} ago.
+  br 
+  - if @post.updated_at > @post.created_at
+    span.timestamp Updated #{time_ago_in_words(@post.updated_at)} ago.
   = render 'posts/post_controls', post: @post

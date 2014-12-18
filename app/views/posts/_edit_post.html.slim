@@ -1,0 +1,21 @@
+div class="form-group"
+  = f.label :content
+  | :
+  - if @post.custom?
+    = f.text_area :content, class: 'form-control', rows: '15'
+  - else
+    = f.bootsy_area :content, class: 'form-control', rows: '15'
+div class="form-group"
+  b Publish?: 
+  = f.check_box :publish
+  |  (You can turn this on or off any time you edit the post.)
+= f.submit 'Save & edit more', class: 'button right'
+|  &nbsp; &nbsp; 
+= f.submit 'Save & view post', class: 'button right'
+|  &nbsp; &nbsp; 
+= f.submit 'Cancel unsaved changes', data: {confirm: "You sure?"}, class: 'button right'
+|  &nbsp; &nbsp; 
+- unless @post.custom?
+  = f.submit 'Convert this post to html editing', data: {confirm: "You sure?"}, class: 'button right'
+- else
+  = f.submit 'Dump custom html editing', data: {confirm: "You sure??!"}, class: 'button right'
