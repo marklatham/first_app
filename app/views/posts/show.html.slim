@@ -2,7 +2,7 @@
 
 div id="post-#{@post.id}"
   h3.title = @post.title
-  p.content = @post.content.html_safe
+  p.content = sanitize @post.content
   = gravatar_for @post.user
   span.user
     = handle(@post.user)
