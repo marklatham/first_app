@@ -28,6 +28,9 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
       sign_in resource_name, resource, bypass: true
+      if error_flag == true
+        redirect_to edit_user_registration_path(resource) and return
+      end
       respond_with resource, location: after_update_path_for(resource)
     else
       clean_up_passwords resource

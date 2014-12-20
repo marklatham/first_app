@@ -94,14 +94,9 @@ class PostsController < ApplicationController
         flash[:notice] = "Post converted."
         redirect_to edit_post_path(post) and return
       elsif params[:commit] == 'Dump custom html editing'
-        new_post = current_user.posts.build(post_params)
-        new_post.custom = post.custom
-        new_post.title = '[backup] ' + post.title
-        new_post.publish = false
-        new_post.save
         post.custom = false
         post.save
-        flash[:alert] = "Custom html dumped. Pre-dump post also saved; delete if not needed."
+        flash[:alert] = "Custom html dumped."
         redirect_to edit_post_path(post) and return
       else
         flash[:notice] = "Post updated."

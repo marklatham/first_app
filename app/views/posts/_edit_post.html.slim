@@ -18,4 +18,4 @@ div class="form-group"
 - unless @post.custom?
   = f.submit 'Convert this post to html editing', data: {confirm: "You sure?"}, class: 'button right'
 - else
-  = f.submit 'Dump custom html editing', data: {confirm: "You sure??!"}, class: 'button right'
+  = f.submit 'Dump custom html editing', data: {confirm: "You sure? Some of your custom html may be permanently lost!"}, class: 'button right'
