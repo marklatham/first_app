@@ -19,3 +19,5 @@ div class="form-group"
   = f.submit 'Convert this post to html editing', data: {confirm: "You sure?"}, class: 'button right'
 - else
   = f.submit 'Dump custom html editing', data: {confirm: "You sure? Some of your custom html may be permanently lost!"}, class: 'button right'
+  br
+  br We recommend reading the #{link_to 'Editing posts', editing_posts_path} page before using this html edit page.

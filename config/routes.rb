@@ -9,9 +9,9 @@ Infocoop::Application.routes.draw do
   resources :users
   resources :posts
   get 'about',                to: 'visitors#about',            as: :about
+  get 'editing_posts',        to: 'visitors#editing_posts',    as: :editing_posts
   get 'faq',                  to: 'visitors#faq',              as: :faq
   get 'feed',                 to: 'posts#feed',                as: :feed
   get 'privacy',              to: 'visitors#privacy',          as: :privacy
   get 'terms',                to: 'visitors#terms',            as: :terms
-  get 'posts/:id/edit_html',  to: 'posts#edit_html',           as: :edit_html
 end

@@ -1,0 +1,19 @@
+- provide :title, 'Editing Posts'
+
+h2 Editing Posts
+
+p You can create posts with simple formatting using the toolbar on the "Create new post" page, and the default "Edit post" page. If that's sufficient formatting, you need not read this page. But if you want more complex formatting, you can convert a post to html editing mode, using the button on the bottom right of the Create and Edit pages.
+
+p As of December 2014, we are still building the html editing capability. It is now usable, but not as user-friendly and full-featured as we would like. We will update the description below as we continue to improve it. We welcome your suggestions and requests by email to vaninfocoop[at]gmail.com!
+
+h4 Bootsy to html -- A one-way street?:
+
+p The simple formatting toolbar is provided by a software component called #{link_to 'Bootsy', 'http://volmerius.com/bootsy/'}, which writes html for the formatting options you choose. You can change a post back and forth between editing using Bootsy and editing the html directly yourself.
+
+p 
+  b But beware: 
+  | If you write some custom html yourself and then change the post back to Bootsy, Bootsy might delete some of your custom html! We're still learning about which types of html are affected. So it's safest not to convert back to Bootsy editing -- let the switch to html editing be a one-way street.
+
+h4 html limited to prevent hacking:
+
+p To defend against hacker tricks like #{link_to 'cross-site scripting', 'http://en.wikipedia.org/wiki/Cross-site_scripting'}, we limit the list of html tags and attributes you can use.

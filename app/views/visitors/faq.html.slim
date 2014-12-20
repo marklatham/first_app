@@ -20,12 +20,12 @@ p Our initial plan is for each member to pay $1 a month into a pool for buying i
 h4 4. How can I find out more about this info co-op plan?
 
 ul
-  li Read the #{link_to('Info Co-op Outline', '/pdf/InfoCoopOutline.pdf')}.
+  li Read the #{link_to 'Info Co-op Outline', '/pdf/InfoCoopOutline.pdf'}.
   li 
     - if user_signed_in?
       - if current_user.email_monthly
         | Read our monthly email updates which 
-        = link_to 'you\'ve signed up for', edit_user_registration_path
+        = link_to "you've signed up for", edit_user_registration_path
       - else
         | Check the box for monthly updates when you 
         = link_to 'edit your account here', edit_user_registration_path
@@ -34,5 +34,22 @@ ul
       = link_to 'register for a free login', new_user_registration_path
     | .
   li Email your questions to vaninfocoop[at]gmail.com.
-  
-h5 Thanks for your interest!
+
+h4 5. Why should I create posts?
+
+p Creating posts is optional. You can benefit from being a member without creating any posts -- just pay $1 a month for log-in access to info that other members post. (As of December 2014, we have not yet built any payment systems on the website, so all access is free -- no charge. This outline of payments is what we are planning.)
+
+p If you like, you can create posts to share info with other members. You can share your info for free, or you can try to get other members to pay you for it.
+
+p The main way to get paid for sharing info with co-op members is to create an info "channel". We are building a system to let members vote co-op funds to channels. It may look something like #{link_to "Votermedia.org's Vancouver page", 'http://votermedia.org/vancouver'}, where voters can allocate funds to blogs.
+
+p While any member can create a channel, we expect that only between five and ten channels will be getting enough votes to win funding. The way votes determine funding will be something like Votermedia.org's system -- #{link_to 'explained in their FAQ', 'http://votermedia.org/faqs#Voting'}.
+
+p A channel can be created by one member, or by a team of people represented by a member. Some channels might choose to reward members who give them info.
+ 
+h4 6. How can I create posts?
+
+p Any logged-in user of this website can select "Create new post" from the user's drop-down menu in the top navigation bar. To let others see it in the #{link_to 'Posts Feed', '/feed'}, you need to click the post's "Publish?" checkbox, and give your real name on the "Edit account" page.
+
+p The "Create new post" page has a toolbar for formatting your post. If you want more complex formatting, you can bypass the toolbar and edit the post's html. For details on that, please see #{link_to 'Editing posts', editing_posts_path}.
+
