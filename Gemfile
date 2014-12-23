@@ -55,7 +55,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec'
   gem 'rspec-mocks'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'database_cleaner'
   gem 'json_expressions'
 end
