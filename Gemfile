@@ -61,7 +61,7 @@ group :development, :test do
 end
 
 group :doc do
-  gem 'sdoc', '0.3.20', require: false
+  gem 'sdoc', '0.4.1', require: false
 end
 
 group :production do
