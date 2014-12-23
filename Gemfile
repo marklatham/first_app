@@ -58,7 +58,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'database_cleaner'
   gem 'json_expressions'
-  gem 'mailcatcher'
 end
 
 group :doc do
