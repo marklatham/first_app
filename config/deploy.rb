@@ -8,7 +8,7 @@ set :branch, ENV["REVISION"] || ENV["BRANCH_NAME"] || "master"
 set :linked_files, %w{config/database.yml config/secrets.yml config/puma.rb .env}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
-set :keep_releases, 3
+set :keep_releases, 5
 set :chruby_ruby, "2.1.2"
 
 set :ssh_options, {
