@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource_updated = update_resource(resource, account_update_params)
 
     error_flag = false
-    if resource.real_name = true
+    if resource.real_name == true
       unless resource.first_name.present? && resource.last_name.present?
         set_flash_message :error, :not_real_name
         resource.real_name = false
