@@ -43,8 +43,8 @@ nginx:
   service: nginx
 
 ruby:
-  version: 2.1.2
-  dev_version: 2.0
+  version: 2.2.0
+  dev_version: 2.2.0
   rubies_dir: /opt/rubies
 
 ruby_install_src_dir: /usr/local/src
