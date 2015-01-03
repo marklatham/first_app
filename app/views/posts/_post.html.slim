@@ -8,8 +8,8 @@ li id="post-#{post.id}"
     span.timestamp Updated #{time_ago_in_words(post.updated_at)} ago.
   - content_text = space_tags(post.content)
   - if content_text.size > 100
-    .title = link_to post.title, post_path(id: post), title: truncate(content_text, length: 1000, separator: ' ')
+    .title = link_to post.title, post_path(id: post), title: truncate(content_text, length: 1000, separator: ' ', :escape => false)
   - else
     .title = link_to post.title, post_path(id: post)
-  .content = truncate(content_text, length: 100, separator: ' ')
+  .content = truncate(content_text, length: 100, separator: ' ', :escape => false)
   = render 'posts/post_controls', post: post

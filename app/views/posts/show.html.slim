@@ -2,7 +2,7 @@
 
 div id="post-#{@post.id}"
   h2.title = @post.title
-  p.content = sanitize @post.content
+  p.content = Loofah.scrub_fragment(@post.content, :prune).to_s.html_safe
   = gravatar_for @post.user
   span.user
     = handle(@post.user)

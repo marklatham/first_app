@@ -24,6 +24,7 @@ gem 'rolify'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootsy'
+gem 'loofah'
 
 # create cron jobs
 gem 'whenever', require: false
