@@ -4,7 +4,7 @@ div class="form-group"
   - if @post.custom?
     = f.text_area :content, class: 'form-control', rows: '15'
   - else
-    = f.bootsy_area :content, class: 'form-control', rows: '15'
+    = f.bootsy_area :content, class: 'form-control', rows: '15', editor_options: {image: false}
 div class="form-group"
   b Publish?: 
   = f.check_box :publish

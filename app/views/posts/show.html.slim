@@ -10,5 +10,5 @@ div id="post-#{@post.id}"
   span.timestamp Posted #{time_ago_in_words(@post.created_at)} ago.
   br 
   - if @post.updated_at > @post.created_at
-    span.timestamp Updated #{time_ago_in_words(@post.updated_at)} ago.
+    span.timestamp Updated #{time_ago_in_words(@post.updated_at)} ago. 
   = render 'posts/post_controls', post: @post
