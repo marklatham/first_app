@@ -35,5 +35,5 @@ li.dropdown
       li = link_to "Didn't receive unlock instructions?", new_user_unlock_path
 li = link_to 'Posts Feed', feed_path
 - if user_signed_in?
-  - if current_user.admin?
+  - if current_user.is_admin?
     li = link_to 'List users', users_path

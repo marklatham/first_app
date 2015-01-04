@@ -7,11 +7,11 @@ class UserPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    @current_user.is_admin? or @current_user == @user
   end
 
 end
