@@ -1,0 +1,10 @@
+- provide :title, 'Admin Channels'
+
+div.container
+  div.row
+    h3 Admin Channels
+    div.column
+      table.table
+        tbody
+          - @channels.each do |channel|
+            tr = render channel

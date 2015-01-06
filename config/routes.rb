@@ -8,6 +8,8 @@ Infocoop::Application.routes.draw do
     get "/change_password" => "registrations#change_password"
   end
 
+  get 'channels/admin',       to: 'channels#admin',            as: :admin_channels
+
   resources :users
   resources :posts
   resources :channels

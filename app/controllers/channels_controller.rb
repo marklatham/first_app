@@ -3,10 +3,12 @@ class ChannelsController < ApplicationController
 
   def new
     @channel = Channel.new
+    authorize @channel
   end
 
   def create
     @channel = Channel.new(channel_params)
+    authorize @channel
     if @channel.save
       flash[:notice] = "Channel created! Edit?"
       redirect_to edit_channel_path(@channel)
@@ -16,12 +18,19 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def admin
+    @channels = Channel.all
+    authorize @channels
+  end
+
   def edit
     @channel = Channel.find(params[:id])
+    authorize @channel
   end
 
   def update
     @channel = Channel.find(params[:id])
+    authorize @channel
     if @channel.update_attributes(channel_params)
       flash[:notice] = "Channel updated. Edit more?"
     else
@@ -32,6 +41,7 @@ class ChannelsController < ApplicationController
 
   def update_display # This method is under construction!
     @channel = Channel.find(params[:id])
+    authorize @channel
     if params[:commit] == 'Cancel unsaved changes'
       flash[:notice] = "Unsaved changes cancelled."
       redirect_to @channel and return
@@ -44,9 +54,11 @@ class ChannelsController < ApplicationController
   end
 
   def destroy
+    @channel = Channel.find(params[:id])
+    authorize @channel
     @channel.destroy
     flash[:notice] = "Channel deleted"
-    redirect_to root_url
+    redirect_to admin_channels_path
   end
 
   private
