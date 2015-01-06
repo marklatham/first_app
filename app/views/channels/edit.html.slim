@@ -1,0 +1,10 @@
+- provide :title, 'Edit channel'
+
+div class="authform"
+  = form_for(@channel) do |f|
+    h3 Edit this channel
+    div class="form-group"
+      = f.label :channel_name
+      | :
+      = f.text_field :name, class: 'form-control'
+    = render 'channels/edit_channel', f: f
