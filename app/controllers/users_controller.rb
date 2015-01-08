@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @user_posts = @user.posts.paginate(page: params[:page])
+    if current_user
+      @channels = current_user.channels
+    end
   end
 
 end

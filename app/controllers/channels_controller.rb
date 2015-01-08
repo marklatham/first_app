@@ -39,18 +39,18 @@ class ChannelsController < ApplicationController
     redirect_to edit_channel_path(@channel)
   end
 
-  def update_display # This method is under construction!
-    @channel = Channel.find(params[:id])
-    authorize @channel
-    if params[:commit] == 'Cancel unsaved changes'
-      flash[:notice] = "Unsaved changes cancelled."
-      redirect_to @channel and return
-    elsif @channel.update_attributes(display_params)
-      update_response(@channel, params); return if performed?
+  def update_display
+    @channel = Channel.find(params[:channel])
+    @post = Post.find(params[:post])
+#    authorize @channel  # Needs rolify setup.
+    @channel.display_id = params[:post]
+    if @channel.save
+      flash[:notice] = "Channel " + @channel.name + " display set to post no. " + params[:post].to_s
+      redirect_to root_path
     else
-      flash[:alert] = "Sorry, couldn't update channel. Try again?"
+      flash[:alert] = "Sorry, couldn't update channel. Contact admin?"
+      redirect_to about_path
     end
-    redirect_to @channel
   end
 
   def destroy
@@ -67,26 +67,4 @@ class ChannelsController < ApplicationController
       params.require(:channel).permit(:name, :manager_id, :display_id)
     end
 
-    def display_params
-      params.require(:channel).permit(:display_id)
-    end
-
-    def update_response(channel, params) # This method is under construction!
-      if params[:commit] == 'Save & edit more'
-        flash[:notice] = "Channel saved."
-        redirect_to edit_channel_path(channel) and return
-      elsif params[:commit] == 'Convert this channel to html editing'
-        channel.custom = true
-        channel.save
-        flash[:notice] = "Channel converted."
-        redirect_to edit_channel_path(channel) and return
-      elsif params[:commit] == 'Dump custom html editing'
-        channel.custom = false
-        channel.save
-        flash[:alert] = "Custom html dumped."
-        redirect_to edit_channel_path(channel) and return
-      else
-        flash[:notice] = "Channel updated."
-      end
-    end
 end
