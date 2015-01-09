@@ -9,4 +9,5 @@ div class="authform"
       = label_tag "Manager id:"
       br
       = text_field_tag :manager_id
+      = hidden_field_tag :channel_id, @channel.id
     = submit_tag 'Submit', class: 'button right'

@@ -45,7 +45,7 @@ class ChannelsController < ApplicationController
   end
 
   def set_manager
-    @channel = Channel.find(params[:format])
+    @channel = Channel.find(params[:channel_id])
     authorize @channel
     user = User.find(params[:manager_id])
     if user.add_role :manager, @channel
