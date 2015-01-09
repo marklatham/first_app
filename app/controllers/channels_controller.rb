@@ -10,8 +10,8 @@ class ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
     authorize @channel
     if @channel.save
-      flash[:notice] = "Channel created! Edit?"
-      redirect_to edit_channel_path(@channel)
+      flash[:notice] = "Channel created!"
+      redirect_to admin_channels_path
     else
       flash[:alert] = "Sorry, couldn't create channel. Try again?"
       render 'channels/new'
@@ -39,6 +39,24 @@ class ChannelsController < ApplicationController
     redirect_to edit_channel_path(@channel)
   end
 
+  def choose_manager
+    @channel = Channel.find(params[:id])
+    authorize @channel
+  end
+
+  def set_manager
+    @channel = Channel.find(params[:format])
+    authorize @channel
+    user = User.find(params[:manager_id])
+    if user.add_role :manager, @channel
+      flash[:notice] = "User no. " + params[:manager_id].to_s + 
+                       " is now manager of channel " + @channel.name
+    else
+      flash[:alert] = "Sorry, couldn't set manager."
+    end
+    redirect_to admin_channels_path
+  end
+
   def update_display
     @channel = Channel.find(params[:channel])
     @post = Post.find(params[:post])
@@ -53,7 +71,7 @@ class ChannelsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy  # Bug: fails as rolify tries to delete related users_roles records.
     @channel = Channel.find(params[:id])
     authorize @channel
     @channel.destroy

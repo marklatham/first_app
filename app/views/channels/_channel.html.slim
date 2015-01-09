@@ -1,4 +1,5 @@
 td = channel.name
 td = link_to 'Edit', edit_channel_path(id: channel)
-/ td = link_to 'Delete', channel, method: :delete, data: {confirm: "You sure?"}
+td = link_to 'Set manager', choose_manager_path(id: channel)
+td = link_to 'Delete', channel, method: :delete, data: {confirm: "You sure?"}
 / Bug: delete not working -- error when rolify tries to delete related users_roles.

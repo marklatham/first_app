@@ -1,0 +1,12 @@
+- provide :title, 'Choose manager'
+
+div class="authform"
+  = form_tag set_manager_channels_path do
+    h3
+      | Choose manager for channel 
+      = @channel.name
+    div class="form-group"
+      = label_tag "Manager id:"
+      br
+      = text_field_tag :manager_id
+    = submit_tag 'Submit', class: 'button right'

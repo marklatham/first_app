@@ -9,11 +9,17 @@ Infocoop::Application.routes.draw do
   end
 
   get 'channels/admin',           to: 'channels#admin',            as: :admin_channels
+  get 'channels/choose_manager',  to: 'channels#choose_manager',   as: :choose_manager
+#  get 'channels/set_manager',     to: 'channels#set_manager',      as: :set_manager
   get 'channels/update_display',  to: 'channels#update_display',   as: :update_display
 
   resources :users
   resources :posts
-  resources :channels
+  resources :channels do
+    collection do
+      post :set_manager
+    end
+  end
 
   get 'about',                to: 'visitors#about',            as: :about
   get 'editing_posts',        to: 'visitors#editing_posts',    as: :editing_posts
