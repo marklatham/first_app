@@ -17,6 +17,7 @@
     - for channel in @channels
       |  | 
       - if channel.display_id == post.id
-        | This post is the display for channel #{channel.name}.
+        | This post is the display for channel #{channel.name}. 
+        = link_to "Unset display", unset_display_path(channel_id: channel.id), data: {confirm: "You sure?"}
       - else
         = link_to "set as display for channel: " + channel.name, update_display_path(channel_id: channel.id, post_id: post.id), data: {confirm: "You sure?"}

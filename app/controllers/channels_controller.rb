@@ -78,7 +78,20 @@ class ChannelsController < ApplicationController
       flash[:notice] = "Channel " + @channel.name + " display set to post no. " + params[:post_id].to_s
       redirect_to :back
     else
-      flash[:alert] = "Sorry, couldn't update channel. Contact admin?"
+      flash[:alert] = "Sorry, couldn't set display. Contact admin?"
+      redirect_to about_path
+    end
+  end
+
+  def unset_display
+    @channel = Channel.find(params[:channel_id])
+    authorize @channel
+    @channel.display_id = nil
+    if @channel.save
+      flash[:notice] = "Channel " + @channel.name + " display unset."
+      redirect_to :back
+    else
+      flash[:alert] = "Sorry, couldn't unset display. Contact admin?"
       redirect_to about_path
     end
   end
