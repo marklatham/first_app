@@ -10,20 +10,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:notice] = "Post created!"
-      redirect_to @post
-    else
-      flash[:alert] = "Sorry, couldn't create post. Try again?"
-      render 'posts/new'
-    end
-  end
-
-  def create
-    @post = current_user.posts.build(post_params)
     if params[:commit] == 'Cancel unsaved changes'
       flash[:notice] = "Unsaved changes cancelled."
-      redirect_to @post and return
+      redirect_to current_user and return
     elsif @post.save
       update_response(@post, params); return if performed?
     else
