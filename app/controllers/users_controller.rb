@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     authorize @user
     @user_posts = @user.posts.paginate(page: params[:page])
     if current_user
-      @channels = current_user.channels
+      @channels = Channel.with_role(:manager, current_user)
     end
   end
 

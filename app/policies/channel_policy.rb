@@ -34,6 +34,10 @@ class ChannelPolicy
     @current_user.is_admin?
   end
 
+  def remove_manager?
+    @current_user.is_admin?
+  end
+
   def update_display?
     @current_user.is_manager_of?(@channel)
   end

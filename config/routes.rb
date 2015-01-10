@@ -10,7 +10,7 @@ Infocoop::Application.routes.draw do
 
   get 'channels/admin',           to: 'channels#admin',            as: :admin_channels
   get 'channels/choose_manager',  to: 'channels#choose_manager',   as: :choose_manager
-#  get 'channels/set_manager',     to: 'channels#set_manager',      as: :set_manager
+  get 'channels/remove_manager',  to: 'channels#remove_manager',   as: :remove_manager
   get 'channels/update_display',  to: 'channels#update_display',   as: :update_display
 
   resources :users

@@ -16,4 +16,7 @@
   - unless @channels.blank?
     - for channel in @channels
       |  | 
-      = link_to "set as display for channel: " + channel.name, update_display_path( channel: channel.id, post: post.id ), data: {confirm: "You sure?"}
+      - if channel.display_id == post.id
+        | This post is the display for channel #{channel.name}.
+      - else
+        = link_to "set as display for channel: " + channel.name, update_display_path(channel_id: channel.id, post_id: post.id), data: {confirm: "You sure?"}

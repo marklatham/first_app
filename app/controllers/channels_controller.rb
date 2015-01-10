@@ -57,21 +57,33 @@ class ChannelsController < ApplicationController
     redirect_to admin_channels_path
   end
 
+  def remove_manager
+    @channel = Channel.find(params[:channel_id])
+    authorize @channel
+    user = User.find(params[:manager_id])
+    if user.remove_role :manager, @channel
+      flash[:notice] = user.name + " is no longer manager of channel " + @channel.name
+    else
+      flash[:alert] = "Sorry, couldn't remove manager."
+    end
+    redirect_to admin_channels_path
+  end
+
   def update_display
-    @channel = Channel.find(params[:channel])
-    @post = Post.find(params[:post])
-#    authorize @channel  # Needs rolify setup.
-    @channel.display_id = params[:post]
+    @channel = Channel.find(params[:channel_id])
+    authorize @channel
+    @post = Post.find(params[:post_id])
+    @channel.display_id = params[:post_id]
     if @channel.save
-      flash[:notice] = "Channel " + @channel.name + " display set to post no. " + params[:post].to_s
-      redirect_to root_path
+      flash[:notice] = "Channel " + @channel.name + " display set to post no. " + params[:post_id].to_s
+      redirect_to :back
     else
       flash[:alert] = "Sorry, couldn't update channel. Contact admin?"
       redirect_to about_path
     end
   end
 
-  def destroy  # Bug: fails as rolify tries to delete related users_roles records.
+  def destroy
     @channel = Channel.find(params[:id])
     authorize @channel
     @channel.destroy

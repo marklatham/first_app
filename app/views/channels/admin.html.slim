@@ -8,3 +8,6 @@ div.container
         tbody
           - @channels.each do |channel|
             tr = render channel
+            - @managers = User.with_role(:manager, channel)
+            - @managers.each do |manager|
+              tr = render 'channels/manager', manager: manager, channel: channel

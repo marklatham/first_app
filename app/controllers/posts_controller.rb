@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     if current_user
-      @channels = current_user.channels
+      @channels = Channel.with_role(:manager, current_user)
     end
     unless current_user == @post.user || current_user.is_admin?
       unless @post.publish == true && @post.user.real_name == true
@@ -75,7 +75,7 @@ class PostsController < ApplicationController
   def feed
     @feed_posts = Post.joins(:user).where(users: {real_name: true}).where(posts: {publish: true}).order('updated_at DESC').paginate(page: params[:page])
     if current_user
-      @channels = current_user.channels
+      @channels = Channel.with_role(:manager, current_user)
     end
   end
 
