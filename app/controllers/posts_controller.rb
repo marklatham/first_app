@@ -17,8 +17,8 @@ class PostsController < ApplicationController
       update_response(@post, params); return if performed?
     else
       flash[:alert] = "Sorry, couldn't create post. Try again?"
+      render 'posts/new'
     end
-    render 'posts/new'
   end
 
   def show
@@ -49,14 +49,15 @@ class PostsController < ApplicationController
       update_response(@post, params); return if performed?
     else
       flash[:alert] = "Sorry, couldn't update post. Try again?"
+      redirect_to edit_post_path(@post)
     end
-    redirect_to @post
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     authorize @post
-    flash[:notice] = "Post deleted"
+    flash[:notice] = "Post deleted."
     redirect_to current_user || root_url
   end
 
@@ -88,8 +89,9 @@ class PostsController < ApplicationController
         post.save
         flash[:alert] = "Custom html dumped."
         redirect_to edit_post_path(post) and return
-      else
-        flash[:notice] = "Post updated."
+      else  # Should be the only other case: params[:commit] == 'Save & view post'
+        flash[:notice] = "Post saved."
+        redirect_to post and return
       end
     end
 end

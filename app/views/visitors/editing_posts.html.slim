@@ -14,6 +14,10 @@ p
   b But beware: 
   | If you write some custom html yourself and then change the post back to Bootsy, Bootsy might delete some of your custom html! We're still learning about which types of html are affected. So it's safest not to convert back to Bootsy editing -- let the switch to html editing be a one-way street.
 
+h4 Best solution for now -- #{link_to 'htmleditor.in', 'http://htmleditor.in'}?:
+
+p There are better WYSIWYG html editors available online for free, such as #{link_to 'htmleditor.in', 'http://htmleditor.in'}. You can create your html there, then copy-paste it into our (non-WYSIWYG) html editor.
+
 h4 html limited to prevent hacking:
 
-p To defend against hacker tricks like #{link_to 'cross-site scripting', 'http://en.wikipedia.org/wiki/Cross-site_scripting'}, we limit the list of html tags and attributes you can use.
+p To defend against hacker tricks like #{link_to 'cross-site scripting', 'http://en.wikipedia.org/wiki/Cross-site_scripting'}, we limit the list of html tags and attributes you can use. So even though they may be in your html, they might be screened out and not work. We expect to adjust this occasionally, and welcome advice on what should be permitted.

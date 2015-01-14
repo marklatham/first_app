@@ -7,11 +7,11 @@ class PostPolicy
   end
 
   def new?
-    user_signed_in?
+    @current_user
   end
 
   def create?
-    user_signed_in?
+    @current_user
   end
 
   def show?
