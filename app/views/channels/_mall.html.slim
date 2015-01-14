@@ -1,0 +1,9 @@
+table.mall
+  tr
+    td style="height:3px; border-bottom: 3px solid $mango-dark"
+  - @channels.each do |channel|
+    - display = Post.find(channel.display_id)
+    tr
+      td
+        div
+          = Loofah.scrub_fragment(display.content, :prune).to_s.html_safe

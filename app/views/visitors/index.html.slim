@@ -11,3 +11,9 @@ p
     li Draft #{link_to 'Memo of Association', '/pdf/VICdraftMoA.pdf'} and #{link_to 'Rules', '/pdf/VICdraftRules.pdf'} for the co-op
 
 p This website is under construction, but you're welcome to try out what we've built so far: Browse the site, #{link_to 'create a free login', new_user_registration_path}, post some info etc. To be notified when we've built more features, when you register you can choose to receive monthly email updates. We'll also announce developments on the #{link_to 'VIC Blog', 'http://vaninfocoop.wordpress.com/'} and on #{link_to 'Twitter @vaninfocoop', 'https://twitter.com/vaninfocoop'}.
+
+h2 Info Mall:
+
+p Below is a mockup of our planned top-level info page. Each info channel will have a rectangle of space to show links to the info they offer.
+
+= render partial: 'channels/mall'
