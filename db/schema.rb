@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110153331) do
+ActiveRecord::Schema.define(version: 20150115205811) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -97,5 +97,18 @@ ActiveRecord::Schema.define(version: 20150110153331) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "votes", force: true do |t|
+    t.float    "share",      limit: 24
+    t.integer  "channel_id"
+    t.integer  "user_id"
+    t.string   "ip"
+    t.string   "agent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["channel_id"], name: "index_votes_on_channel_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end

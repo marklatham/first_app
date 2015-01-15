@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # Other devise modules available are :timeoutable and :omniauthable.
 
   has_many :posts
+  has_many :votes
 
   def name
     [first_name, last_name].compact.join(' ')
