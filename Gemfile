@@ -25,6 +25,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootsy'
 gem 'loofah'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
 
 # create cron jobs
 gem 'whenever', require: false
