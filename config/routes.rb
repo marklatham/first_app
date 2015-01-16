@@ -8,11 +8,12 @@ Infocoop::Application.routes.draw do
     get "/change_password" => "registrations#change_password"
   end
 
-  get 'channels/admin',           to: 'channels#admin',            as: :admin_channels
-  get 'channels/choose_manager',  to: 'channels#choose_manager',   as: :choose_manager
-  get 'channels/remove_manager',  to: 'channels#remove_manager',   as: :remove_manager
-  get 'channels/update_display',  to: 'channels#update_display',   as: :update_display
-  get 'channels/unset_display',   to: 'channels#unset_display',    as: :unset_display
+  get  'channels/admin',           to: 'channels#admin',            as: :admin_channels
+  get  'channels/choose_manager',  to: 'channels#choose_manager',   as: :choose_manager
+  get  'channels/remove_manager',  to: 'channels#remove_manager',   as: :remove_manager
+  get  'channels/update_display',  to: 'channels#update_display',   as: :update_display
+  get  'channels/unset_display',   to: 'channels#unset_display',    as: :unset_display
+  post 'votes/vote_for_channel',   to: 'votes#vote_for_channel',    as: :vote_for_channel
 
   resources :users
   resources :posts

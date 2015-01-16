@@ -2,7 +2,12 @@ table.mall
   - @channels.each do |channel|
     - display = Post.find(channel.display_id)
     tr
-      td.mall-vote vote
+      td.mall-vote
+        div.form-group
+          = form_tag vote_for_channel_path do
+            = select_tag :share, options_for_select([['Vote:', ''], ['0%', '0'], ['10%', '10'], ['20%', '20'], ['30%', '30'], ['40%', '40'], ['50%', '50']]), class: 'form-control'
+            = hidden_field_tag :channel_id, channel.id
+            = submit_tag 'Submit', class: 'button right'
       td
         div.mall-display
           = Loofah.scrub_fragment(display.content, :prune).to_s.html_safe
