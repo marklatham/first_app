@@ -11,8 +11,16 @@ class VotesController < ApplicationController
     else
       vote = Vote.create!({:share => @share, :channel_id => @channel.id, :ip => @ip, :agent => @agent})
     end
+    @ballot = find_ballot
+    @ballot.add_vote(vote)
     
     redirect_to :back
   end
 
+  private
+
+  def find_ballot 
+    session[:ballot] ||= Ballot.new 
+  end
+  
 end

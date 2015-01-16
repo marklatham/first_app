@@ -1,6 +1,5 @@
 table.mall
   - @channels.each do |channel|
-    - display = Post.find(channel.display_id)
     tr
       td.mall-vote
         div.form-group
@@ -10,4 +9,5 @@ table.mall
             = submit_tag 'Submit', class: 'button right'
       td
         div.mall-display
+          - display = Post.find(channel.display_id)
           = Loofah.scrub_fragment(display.content, :prune).to_s.html_safe
