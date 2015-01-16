@@ -17,10 +17,4 @@ class VotesController < ApplicationController
     redirect_to :back
   end
 
-  private
-
-  def find_ballot 
-    session[:ballot] ||= Ballot.new 
-  end
-  
 end

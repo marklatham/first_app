@@ -1,11 +1,11 @@
 class Ballot
-  attr_reader :clicks
+  attr_reader :session_votes
 
   def initialize
-    @clicks = []
+    @session_votes = []
   end
 
   def add_vote(vote)
-    @clicks << vote
+    @session_votes << vote
   end
 end
