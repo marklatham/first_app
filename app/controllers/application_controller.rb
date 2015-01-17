@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def find_ballot 
-    session[:ballot] ||= Ballot.new 
+    session[:ballot] ||= Ballot.new
   end
   
 end

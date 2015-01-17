@@ -3,7 +3,7 @@ Infocoop::Application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'visitors#index'
   devise_for :users, path: '', path_names: {sign_up: 'register', sign_in: 'login', sign_out: 'logout'},
-             controllers: {registrations: 'registrations'}
+             controllers: {registrations: 'registrations', sessions: 'sessions'}
   devise_scope :user do
     get "/change_password" => "registrations#change_password"
   end
