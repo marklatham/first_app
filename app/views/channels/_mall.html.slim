@@ -1,18 +1,18 @@
 table.mall
   - @channels.each do |channel|
     -# Find latest vote (if any) in this session for this channel:
-    - flag = 0
-    - created = Time.parse("2000-01-01 01:23:45.608000")
+    - voted_flag = 0
+    - when_voted = Time.parse("2000-01-01 01:23:45.608000")
     - if @ballot.session_votes
       - for session_vote in @ballot.session_votes
         - if session_vote.share && session_vote.channel_id == channel.id
-          - flag = 1
-          - if session_vote.created_at > created
-            - created = session_vote.created_at
+          - voted_flag = 1
+          - if session_vote.created_at > when_voted
+            - when_voted = session_vote.created_at
             - voted_share = session_vote.share
     tr
       td.mall-vote
-        - if flag == 1
+        - if voted_flag == 1
           .you-voted
             | You voted 
             = number_with_precision(voted_share, :precision => 0) + '%'
