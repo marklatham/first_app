@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117230602) do
+ActiveRecord::Schema.define(version: 20150117232229) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(version: 20150117230602) do
   end
 
   add_index "channels", ["display_id"], name: "index_channels_on_display_id", using: :btree
+
+  create_table "past_standings", force: true do |t|
+    t.integer  "standing_id"
+    t.integer  "channel_id"
+    t.integer  "rank"
+    t.float    "share",       limit: 24
+    t.float    "count0",      limit: 24
+    t.float    "count1",      limit: 24
+    t.datetime "tallied_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "past_standings", ["channel_id"], name: "index_past_standings_on_channel_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.text     "content"

@@ -3,4 +3,5 @@ class Channel < ActiveRecord::Base
   belongs_to :display, class_name: 'Post'
   has_many :votes
   has_many :standings
+  has_many :past_standings
 end
