@@ -12,6 +12,8 @@ namespace :votes do
     puts "Time now = " + time_now.inspect
     standing_tallied_at = Standing.all.order("tallied_at").last.tallied_at if Standing.any?
     past_standing_tallied_at = PastStanding.all.order("tallied_at").last.tallied_at if PastStanding.any?
+    puts "standing_tallied_at = " + standing_tallied_at.to_s
+    puts "past_standing_tallied_at = " + past_standing_tallied_at.to_s
     
     if standing_tallied_at
       latest_tallied_at = standing_tallied_at
@@ -77,7 +79,7 @@ namespace :votes do
     parameter = {days_full_value: 10, days_valid: 60, interpolation_range: 10.0, spread: 8.0}
     channels = Channel.where("display_id > 0")
     votes = Vote.where("user_id IS NOT NULL and created_at < ?", cutoff_time)
-                .order(:user_id, :channel_id, created_at: :desc)
+                .order(:user_id, :channel_id, created_at: :desc).to_a
     
     if votes.any?
       puts "Found " + votes.size.to_s + " votes. "
@@ -108,7 +110,7 @@ namespace :votes do
       # Find or create a standing for each channel:
       standings = []
       for channel in channels
-        standing = Standing.where("channel_id = ?", channel.id).first
+        standing = channel.standings.first
         if standing
           standings << standing
         else
@@ -137,8 +139,8 @@ namespace :votes do
     for standing in standings
       standing.count0 = count_votes(cutoff_time, votes, standing, 0.0, parameter)
       standing.count1 = count_votes(cutoff_time, votes, standing, 1.0, parameter)
-      puts standing.channel.name.inspect + " Count0: " + standing.count0.inspect
-      puts standing.channel.name.inspect + " Count1: " + standing.count1.inspect
+      puts standing.channel.name + " Count0: " + standing.count0.inspect
+      puts standing.channel.name + " Count1: " + standing.count1.inspect
     end
     
     # standing_to_increase is the standing record that most deserves to have its share increased by 1:
@@ -250,7 +252,10 @@ namespace :votes do
     end
     
     # This is designed to encourage competition by handicapping larger shares:
-    return count / ( parameter[:spread]**(cutoff_share*0.01) )
+    adjusted_count = count / ( parameter[:spread]**(cutoff_share*0.01) )
+    puts standing.channel.name + " adjusted count at share = " + standing.share.to_s +
+                      " & increment = " + increment.to_s + " is " + adjusted_count.to_s
+    return adjusted_count
   end
   
 end
