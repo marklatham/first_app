@@ -18,7 +18,7 @@ table.mall
             = number_with_precision(voted_share, :precision => 0) + '%'
         div.form-group
           = form_tag vote_for_channel_path do
-            = select_tag :share, options_for_select([['Vote:', ''], ['0%', '0'], ['10%', '10'], ['20%', '20'], ['30%', '30'], ['40%', '40'], ['50%', '50']]), class: 'form-control', onchange: 'this.form.submit()'
+            = select_tag :share, options_for_select([['Vote:', ''], ['0%', '0'], ['10%', '10'], ['20%', '20'], ['30%', '30'], ['40%', '40'], ['50%', '50'], ['60%', '60']]), class: 'form-control', onchange: 'this.form.submit()'
             = hidden_field_tag :channel_id, channel.id
       td
         div.mall-display
