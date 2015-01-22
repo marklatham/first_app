@@ -60,15 +60,6 @@ namespace :votes do
       puts "It's too soon to tally!"
     else
       calc_standings(cutoff_time)  # ***MAIN ROUTINE: Method defined below.
-      standings = Standing.all
-      if standings.any?
-        puts standings.size.to_s + " standings calc'd & saved. Archiving..."
-        for standing in standings
-          standing.archive
-        end
-      else
-        puts "No standings found.  :-("
-      end
     end
   end
   
@@ -206,7 +197,8 @@ namespace :votes do
       rank_sequence += 1
       standing.rank = rank_sequence
       standing.tallied_at = cutoff_time
-      standing.save
+      standing.save     # => Standings table
+      standing.archive  # => PastStandings table
     end
     
   end
