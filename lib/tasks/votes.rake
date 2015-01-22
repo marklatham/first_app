@@ -35,16 +35,17 @@ namespace :votes do
         puts "Warning: no past standings found."
       end
     else # i.e. standing_tallied_at does not exist
-      puts "Warning: no current standings found."
-      if past_standing_tallied_at
-        latest_tallied_at = past_standing_tallied_at
+      puts "Warning: no current standings found. Generate them from displayed channels."
+      channels = Channel.where("display_id > 0")
+      if channels.any?
+        for channel in channels
+          Standing.create!(channel_id: channel.id, share: 1.0)
+        end
       else
-        puts "Warning: no past standings found."
+        puts "Alert: no standings or displayed channels -- nothing to do!  :-("
       end
     end
     
-    # So now latest_tallied_at has been set,
-    # unless neither standing_tallied_at nor past_standing_tallied_at exists.
     if latest_tallied_at
       # Usually 24 hours to next cutoff, but this allows +- 12 hours for unusual situations:
       next_day = 36.hours.since(latest_tallied_at)
@@ -68,7 +69,7 @@ namespace :votes do
   def calc_standings(cutoff_time)
     
     parameter = {days_full_value: 10, days_valid: 60, interpolation_range: 10.0, spread: 8.0}
-    channels = Channel.where("display_id > 0")
+    standings = Standing.all.to_a
     votes = Vote.where("user_id IS NOT NULL and created_at < ?", cutoff_time)
                 .order(:user_id, :channel_id, created_at: :desc).to_a
     
@@ -96,21 +97,11 @@ namespace :votes do
       puts votes.size.to_s + " latest votes for tallying."
     end
     
-    if channels.any?
-      puts "Found " + channels.size.inspect + " channels."
-      # Find or create a standing for each channel:
-      standings = []
-      for channel in channels
-        standing = channel.standing
-        if standing
-          standings << standing
-        else
-          standings << Standing.create!(channel_id: channel.id, share: 0.0)
-        end
-      end
-      puts standings.size.to_s + " standings."
+    if standings.any?
+      puts "Found " + standings.size.inspect + " standings."
     else
-      puts "Warning: Found no channels!"
+      puts "Alert: Found no standings!"
+      return
     end
     
     # Make sure shares are nonnegative whole numbers, not all zero:
@@ -120,6 +111,7 @@ namespace :votes do
         standing.share = 0.0
       end
     end
+    
     if standings.sum(&:share) <= 0.0
       for standing in standings
         standing.share = 1.0
