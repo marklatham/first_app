@@ -110,11 +110,11 @@ namespace :votes do
       # Find or create a standing for each channel:
       standings = []
       for channel in channels
-        standing = channel.standings.first
+        standing = channel.standing
         if standing
           standings << standing
         else
-          standings << Standing.new(channel_id: channel.id, share: 0.0)
+          standings << Standing.create!(channel_id: channel.id, share: 0.0)
         end
       end
       puts standings.size.to_s + " standings."
