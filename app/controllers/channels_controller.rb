@@ -76,6 +76,15 @@ class ChannelsController < ApplicationController
     @channel.display_id = params[:post_id]
     if @channel.save
       flash[:notice] = "Channel " + @channel.name + " display set to post no. " + params[:post_id].to_s
+      unless @channel.standing # Create a Standing record the first time display is set:
+        max_rank = Standing.maximum(:rank)
+        if Standing.create!(channel_id: @channel.id, rank: max_rank + 1, share: 0.0, count0: 0.0, count1: 0.0)
+          flash[:notice] = "Created new row on ballot for this channel."
+        else
+          flash[:alert] = "Alert: couldn't create Standing record to display channel!"
+        end
+        redirect_to root_path
+      end
       redirect_to :back
     else
       flash[:alert] = "Sorry, couldn't set display. Contact admin?"

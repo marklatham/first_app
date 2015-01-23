@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
 
   def index
-    @channels = Channel.where("display_id > 0")
+    @standings = Standing.all.order("rank ASC")
     @ballot = find_ballot
   end
 

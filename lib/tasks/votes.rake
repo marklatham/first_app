@@ -10,8 +10,8 @@ namespace :votes do
     Time.zone = "Pacific Time (US & Canada)"
     time_now = Time.now
     puts "Time now = " + time_now.inspect
-    standing_tallied_at = Standing.all.order("tallied_at").last.tallied_at if Standing.any?
-    past_standing_tallied_at = PastStanding.all.order("tallied_at").last.tallied_at if PastStanding.any?
+    standing_tallied_at = Standing.maximum(:tallied_at) if Standing.any?
+    past_standing_tallied_at = PastStanding.maximum(:tallied_at) if PastStanding.any?
     puts "standing_tallied_at = " + standing_tallied_at.to_s
     puts "past_standing_tallied_at = " + past_standing_tallied_at.to_s
     
