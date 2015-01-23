@@ -1,4 +1,5 @@
 td = channel.name
 td Manager:
-td = manager.name
-td = link_to 'Remove', remove_manager_path(channel_id: channel.id, manager_id: manager.id), data: {confirm: "You sure?"}
+td = handle(manager)
+td = link_to 'Remove', remove_manager_path(channel_id: channel.id, manager_id: manager.id),
+                       data: {confirm: "You sure?"}

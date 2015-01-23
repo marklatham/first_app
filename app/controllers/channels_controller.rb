@@ -36,7 +36,7 @@ class ChannelsController < ApplicationController
     else
       flash[:alert] = "Sorry, couldn't update channel. Try again?"
     end
-    redirect_to edit_channel_path(@channel)
+    redirect_to admin_channels_path
   end
 
   def choose_manager
@@ -85,7 +85,7 @@ class ChannelsController < ApplicationController
         end
         redirect_to root_path
       end
-      redirect_to :back
+      redirect_to root_path
     else
       flash[:alert] = "Sorry, couldn't set display. Contact admin?"
       redirect_to about_path

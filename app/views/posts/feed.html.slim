@@ -1,6 +1,7 @@
 - provide :title, "Posts Feed"
 
 h3 Posts Feed
+p This page is not (yet) designed to be well organized. The job of organizing content is for the channel managers, and their organized content is accessed from the #{link_to 'home page', root_path}. Any logged-in user of this website can post info below, if they give their real name. (We'll build anti-spam controls etc later as needed.)
 ol.posts
   = render partial: 'posts/post', collection: @feed_posts
 = will_paginate @feed_posts

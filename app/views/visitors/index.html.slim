@@ -3,17 +3,19 @@ h2 Coming soon: Vancouver Info Co-op
 p A competitive market for information that empowers you --
   e.g. how can you save money on mobile phone services, banking, groceries etc?
 
-p 
-  | See our plans in:
-  ul
-    li = link_to 'FAQ', faq_path
-    li = link_to 'Info Co-op Outline', '/pdf/InfoCoopOutline.pdf'
-    li Draft #{link_to 'Memo of Association', '/pdf/VICdraftMoA.pdf'} and #{link_to 'Rules', '/pdf/VICdraftRules.pdf'} for the co-op
+p
+  b Our plans for the co-op:
+ol
+  li Members will pay $1 a month for login access to all info linked through channels below.
+  li Members will vote to allocate the funding pool among the channels.
+
+p
+  b Want to make money by creating an info channel? Please read our #{link_to "Channel Managers' Guide", channel_managers_path}.
 
 p This website is under construction, but you're welcome to try out what we've built so far: Browse the site, #{link_to 'create a free login', new_user_registration_path}, post some info etc. To be notified when we've built more features, when you register you can choose to receive monthly email updates. We'll also announce developments on the #{link_to 'VIC Blog', 'http://vaninfocoop.wordpress.com/'} and on #{link_to 'Twitter @vaninfocoop', 'https://twitter.com/vaninfocoop'}.
 
 h2 Info Mall:
 
-p Below is a mockup of our planned top-level info page. Each info channel will have a rectangle of space to show links to the info they offer.
+p Below is a mockup of our planned top-level info page. Each channel will have a rectangle of space to show links to the info they offer.
 
 = render partial: 'channels/mall'

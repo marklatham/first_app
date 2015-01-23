@@ -24,6 +24,7 @@ Infocoop::Application.routes.draw do
   end
 
   get 'about',                to: 'visitors#about',            as: :about
+  get 'channel_managers',     to: 'visitors#channel_managers', as: :channel_managers
   get 'editing_posts',        to: 'visitors#editing_posts',    as: :editing_posts
   get 'faq',                  to: 'visitors#faq',              as: :faq
   get 'feed',                 to: 'posts#feed',                as: :feed
