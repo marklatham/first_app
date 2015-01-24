@@ -32,18 +32,10 @@ namespace :votes do
           end
         end
       else # i.e. past_standing_tallied_at does not exist
-        puts "Warning: no past standings found."
+        puts "Warning: no past_standing_tallied_at found."
       end
     else # i.e. standing_tallied_at does not exist
-      puts "Warning: no current standings found. Generate them from displayed channels."
-      channels = Channel.where("display_id > 0")
-      if channels.any?
-        for channel in channels
-          Standing.create!(channel_id: channel.id, share: 1.0)
-        end
-      else
-        puts "Alert: no standings or displayed channels -- nothing to do!  :-("
-      end
+      puts "Warning: no standing_tallied_at found."
     end
     
     if latest_tallied_at
@@ -62,6 +54,7 @@ namespace :votes do
     else
       calc_standings(cutoff_time)  # ***MAIN ROUTINE: Method defined below.
     end
+    AdminMailer.votes_tally(cutoff_time).deliver
   end
   
   
@@ -69,9 +62,23 @@ namespace :votes do
   def calc_standings(cutoff_time)
     
     parameter = {days_full_value: 10, days_valid: 60, interpolation_range: 10.0, spread: 8.0}
-    standings = Standing.all.to_a
     votes = Vote.where("user_id IS NOT NULL and created_at < ?", cutoff_time)
                 .order(:user_id, :channel_id, created_at: :desc).to_a
+    standings = Standing.all.to_a
+    unless standings.any?
+      puts "Warning: no standings found. Generating them from displayed channels."
+      channels = Channel.where("display_id > 0")
+      if channels.any?
+        for channel in channels
+          Standing.create!(channel_id: channel.id, share: 1.0)
+        end
+        standings = Standing.all.to_a
+      else
+        puts "Alert: no standings or displayed channels -- nothing to do!  :-("
+        return
+      end
+      
+    end
     
     if votes.any?
       puts "Found " + votes.size.to_s + " votes. "
