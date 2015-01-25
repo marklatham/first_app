@@ -54,6 +54,8 @@ namespace :votes do
     else
       calc_standings(cutoff_time)  # ***MAIN ROUTINE: Method defined below.
     end
+    # This mailer works in dev but not in prod. Haven't really tried to fix it, because
+    # we get emails from cron job in prod anyway:
     AdminMailer.votes_tally(cutoff_time).deliver
   end
   

@@ -1,6 +1,6 @@
 table.mall
   tr
-    th Shares
+    th.green Shares
     th.centred Your Votes
     th Channel Displays
   - @standings.each do |standing|
@@ -17,7 +17,7 @@ table.mall
     tr
       td.rank-share
         .rank ##{standing.rank}
-        .share &nbsp; &nbsp; #{number_with_precision(standing.share, :precision => 0)}%
+        .share #{number_with_precision(standing.share, :precision => 0)}%
       td.mall-vote
         - if voted_flag == 1
           .you-voted
