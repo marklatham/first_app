@@ -1,6 +1,20 @@
+table.mall {
+  td, th {
+    border-bottom: 3px solid $mango-dark;
+  }
+}
+
+.rank-share {
+  border-left: 3px solid $mango-dark;
+  padding-left: 5px;
+  padding-top: 18px;
+  vertical-align: top;
+}
+
 .mall-display {
   height:   100px;
   overflow: scroll;
+  border-right: 3px solid $mango-dark;
 }
 
 .mall-vote {
