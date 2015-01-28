@@ -9,8 +9,7 @@ div.row
         br
         = handle(@user)
   .col-md-8
-    - if @user.posts.any?
-      h3 Posts (#{@user.posts.count})
-      ol.posts
-        = render @user_posts
-      = will_paginate @user_posts
+    h3 Posts (#{@user_posts.count})
+    ol.posts
+      = render @user_posts
+    = will_paginate @user_posts

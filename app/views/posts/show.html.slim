@@ -5,7 +5,7 @@ div id="post-#{@post.id}"
   p.content = Loofah.scrub_fragment(@post.content, :prune).to_s.html_safe
   = gravatar_for @post.user
   span.user
-    = handle(@post.user)
+    = link_to handle(@post.user), @post.user
   br
   span.timestamp Posted #{time_ago_in_words(@post.created_at)} ago.
   br 
