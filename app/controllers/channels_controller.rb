@@ -100,7 +100,13 @@ class ChannelsController < ApplicationController
     @channel.display_id = nil
     if @channel.save
       flash[:notice] = "Channel " + @channel.name + " display unset."
-      redirect_to :back
+      if request.referer
+        redirect_to :back
+      elsif current_user
+        redirect_to current_user
+      else
+        redirect_to root_path
+      end
     else
       flash[:alert] = "Sorry, couldn't unset display. Contact admin?"
       redirect_to about_path

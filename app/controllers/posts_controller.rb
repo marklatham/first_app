@@ -62,7 +62,8 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @feed_posts = Post.joins(:user).where(users: {real_name: true}).where(posts: {publish: true}).order('updated_at DESC').paginate(page: params[:page])
+    @feed_posts = Post.joins(:user).where(users: {real_name: true}).where(posts: {publish: true})
+                      .order('updated_at DESC').paginate(page: params[:page])
     authorize @feed_posts
     if current_user
       @channels = Channel.with_role(:manager, current_user)

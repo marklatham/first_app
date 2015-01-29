@@ -9,11 +9,14 @@ class VotesController < ApplicationController
       vote = Vote.create!(share: share, channel_id: channel.id, ip: ip, agent: agent, user_id: current_user.id)
     else
       vote = Vote.create!(share: share, channel_id: channel.id, ip: ip, agent: agent)
-      flash[:notice] = "Thanks for voting. But FYI: at this point, your votes only count if you're logged in."
     end
     ballot = find_ballot
     ballot.add_vote(vote)
-    redirect_to :back
+    if request.referer
+      redirect_to :back
+    else
+      redirect_to root_path
+    end
   end
 
 end
