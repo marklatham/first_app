@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :votes
+  has_many :auths
 
   def name
     [first_name, last_name].compact.join(' ')
