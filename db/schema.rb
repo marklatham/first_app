@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131164003) do
+ActiveRecord::Schema.define(version: 20150131215313) do
 
   create_table "auths", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150131164003) do
   end
 
   add_index "channels", ["display_id"], name: "index_channels_on_display_id", using: :btree
+
+  create_table "parameters", force: true do |t|
+    t.datetime "as_of"
+    t.float    "days_full_value",     limit: 24
+    t.float    "days_valid",          limit: 24
+    t.float    "interpolation_range", limit: 24
+    t.float    "spread",              limit: 24
+    t.float    "ip_level",            limit: 24
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "past_standings", force: true do |t|
     t.integer  "standing_id"
@@ -153,6 +165,8 @@ ActiveRecord::Schema.define(version: 20150131164003) do
     t.string   "agent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "days",       limit: 24
+    t.float    "level",      limit: 24
   end
 
   add_index "votes", ["channel_id"], name: "index_votes_on_channel_id", using: :btree
