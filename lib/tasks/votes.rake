@@ -1,5 +1,32 @@
 namespace :votes do
 
+  desc "Fill in days & level for recent votes."
+  task process: :environment do
+    Time.zone = "Pacific Time (US & Canada)"
+    time_now = Time.now
+    puts "Time now = " + time_now.inspect
+    
+    votes = Vote.where("days IS NULL").order(:id)
+    puts votes.size.to_s + " new votes"
+    
+    for vote in votes
+      if previous_vote = Vote.where("ip = ? and created_at < ?",
+                                        vote.ip, vote.created_at).order("created_at").last
+        vote.days = (vote.created_at.in_time_zone.to_date - previous_vote.created_at.in_time_zone.to_date).to_f
+      else
+        vote.days = -1
+      end
+      
+      if auth = Auth.where("user_id = ? and created_at < ?",
+                             vote.user_id, vote.created_at).order("created_at").last
+        vote.level = auth.level
+      end
+      
+      vote.save
+    end
+  end
+
+
   desc "Tally votes for the next day."
   task tally: :environment do
     
@@ -63,9 +90,8 @@ namespace :votes do
   # Subroutine to calculate channel standings from votes:
   def calc_standings(cutoff_time)
     
-    parameter = {days_full_value: 10, days_valid: 60, interpolation_range: 10.0, spread: 8.0}
-    votes = Vote.where("user_id IS NOT NULL and created_at < ?", cutoff_time)
-                .order(:user_id, :channel_id, created_at: :desc).to_a
+    parameter = Parameter.where("as_of < ?", cutoff_time).order(:as_of).last
+    
     standings = Standing.all.to_a
     unless standings.any?
       puts "Warning: no standings found. Generating them from displayed channels."
@@ -79,39 +105,75 @@ namespace :votes do
         puts "Alert: no standings or displayed channels -- nothing to do!  :-("
         return
       end
-      
     end
-    
-    if votes.any?
-      puts "Found " + votes.size.to_s + " votes. "
-    else
-      puts "Found no votes. "
-    end
-    
-    # Only count the latest vote from each user on each channel.
-    # For each [user_id, channel_id], votes are in reverse chronological order,
-    # so keep the first one in each group:
-    keep_vote = votes[0]
-    index = 1
-    while votes[index]  # i.e. until we have gone past the end of votes array
-      if votes[index].user_id ==  keep_vote.user_id &&  votes[index].channel_id == keep_vote.channel_id
-        votes.delete(votes[index])
-      else
-        keep_vote = votes[index]
-        index += 1
-      end
-    end
-    
-    if votes.any?
-      puts votes.size.to_s + " latest votes for tallying."
-    end
-    
     if standings.any?
       puts "Found " + standings.size.inspect + " standings."
     else
       puts "Alert: Found no standings!"
       return
     end
+    
+    oldest_time = (parameter.days_valid + 1).days.until(cutoff_time)
+    puts "oldest_time = " + oldest_time.inspect
+    votes_auth = Vote.where("created_at > ? and created_at < ? and level > ?",
+                                oldest_time,       cutoff_time,    parameter.ip_level)
+                     .order(:user_id, :channel_id, created_at: :desc).to_a
+    votes_non_auth = Vote.where("created_at > ? and created_at < ? and (level IS NULL or level <= ?)",
+                                   oldest_time,       cutoff_time,               parameter.ip_level)
+                     .order(:ip,      :channel_id, created_at: :desc).to_a
+    if votes_auth.any?
+      puts "Found " + votes_auth.size.to_s + " votes_auth."
+    else
+      puts "Found no votes_auth."
+    end
+    if votes_non_auth.any?
+      puts "Found " + votes_non_auth.size.to_s + " votes_non_auth."
+    else
+      puts "Found no votes_non_auth."
+    end
+    
+    # Don't count votes_non_auth with same ip as votes_auth:
+    votes_auth_ips = votes_auth.map(&:ip).uniq.sort
+    for vote in votes_non_auth
+      votes_non_auth.delete(vote) if votes_auth_ips.include?(vote.ip)
+    end
+    puts votes_non_auth.size.to_s + " votes_non_auth left."
+    
+    # In votes_auth, only count the latest vote from each user on each channel.
+    # For each [user_id, channel_id], votes are in reverse chronological order,
+    # so keep the first one in each group:
+    keep_vote = votes_auth[0]
+    index = 1
+    while votes_auth[index]  # i.e. until we have gone past the end of votes_auth array
+      if votes_auth[index].user_id ==  keep_vote.user_id &&  votes_auth[index].channel_id == keep_vote.channel_id
+        votes_auth.delete(votes_auth[index])
+      else
+        keep_vote = votes_auth[index]
+        index += 1
+      end
+    end
+    if votes_auth.any?
+      puts votes_auth.size.to_s + " latest votes_auth for tallying."
+    end
+    
+    # In votes_non_auth, only count the latest vote from each ip on each channel.
+    # For each [ip, channel_id], votes are in reverse chronological order,
+    # so keep the first one in each group:
+    keep_vote = votes_non_auth[0]
+    index = 1
+    while votes_non_auth[index]  # i.e. until we have gone past the end of votes_non_auth array
+      if votes_non_auth[index].ip ==  keep_vote.ip &&  votes_non_auth[index].channel_id == keep_vote.channel_id
+        votes_non_auth.delete(votes_non_auth[index])
+      else
+        keep_vote = votes_non_auth[index]
+        index += 1
+      end
+    end
+    if votes_non_auth.any?
+      puts votes_non_auth.size.to_s + " latest votes_non_auth for tallying."
+    end
+    
+    votes = votes_auth | votes_non_auth
     
     # Make sure shares are nonnegative whole numbers, not all zero:
     for standing in standings
@@ -216,11 +278,11 @@ namespace :votes do
         
         # Time decay of vote:
         days_old = (cutoff_time.to_date - vote.created_at.to_date).to_i
-        if days_old < parameter[:days_full_value]
+        if days_old < parameter.days_full_value
           decayed_weight = 1.0
-        elsif days_old < parameter[:days_valid]
-          decayed_weight = ( parameter[:days_valid] - days_old ) /
-                           ( parameter[:days_valid] - parameter[:days_full_value] )
+        elsif days_old < parameter.days_valid
+          decayed_weight = ( parameter.days_valid - days_old ) /
+                           ( parameter.days_valid - parameter.days_full_value )
         else
           decayed_weight = 0.0
         end
@@ -232,20 +294,23 @@ namespace :votes do
           else
             support_fraction = 0.0
           end
-        elsif vote.share > cutoff_share + 0.5*parameter[:interpolation_range]
+        elsif vote.share > cutoff_share + 0.5*parameter.interpolation_range
           support_fraction = 1.0
-        elsif vote.share < cutoff_share - 0.5*parameter[:interpolation_range]
+        elsif vote.share < cutoff_share - 0.5*parameter.interpolation_range
           support_fraction = 0.0
         else
-          support_fraction = 0.5 + ( (vote.share - cutoff_share) / parameter[:interpolation_range] )
+          support_fraction = 0.5 + ( (vote.share - cutoff_share) / parameter.interpolation_range )
         end
         
-        count += decayed_weight * support_fraction
+        auth_level = parameter.ip_level
+        auth_level = vote.level if vote.level
+        
+        count += decayed_weight * support_fraction * auth_level
       end
     end
     
     # This is designed to encourage competition by handicapping larger shares:
-    adjusted_count = count / ( parameter[:spread]**(cutoff_share*0.01) )
+    adjusted_count = count / ( parameter.spread**(cutoff_share*0.01) )
     puts standing.channel.name + " adjusted count at share = " + standing.share.to_s +
                       " & increment = " + increment.to_s + " is " + adjusted_count.to_s
     return adjusted_count
