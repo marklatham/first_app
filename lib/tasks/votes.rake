@@ -81,8 +81,6 @@ namespace :votes do
     else
       calc_standings(cutoff_time)  # ***MAIN ROUTINE: Method defined below.
     end
-    # This mailer works in dev but not in prod. Haven't really tried to fix it, because
-    # we get emails from cron job in prod anyway:
     AdminMailer.votes_tally(cutoff_time).deliver
   end
   
@@ -134,42 +132,48 @@ namespace :votes do
     
     # Don't count votes_non_auth with same ip as votes_auth:
     votes_auth_ips = votes_auth.map(&:ip).uniq.sort
+    puts votes_auth_ips.inspect
+    puts votes_non_auth.inspect
+    votes_to_keep = []
     for vote in votes_non_auth
-      votes_non_auth.delete(vote) if votes_auth_ips.include?(vote.ip)
+      puts vote.inspect
+      votes_to_keep << vote unless votes_auth_ips.include?(vote.ip)
     end
+    votes_non_auth = votes_to_keep
+    puts votes_non_auth.inspect
     puts votes_non_auth.size.to_s + " votes_non_auth left."
     
     # In votes_auth, only count the latest vote from each user on each channel.
     # For each [user_id, channel_id], votes are in reverse chronological order,
     # so keep the first one in each group:
-    keep_vote = votes_auth[0]
-    index = 1
-    while votes_auth[index]  # i.e. until we have gone past the end of votes_auth array
-      if votes_auth[index].user_id ==  keep_vote.user_id &&  votes_auth[index].channel_id == keep_vote.channel_id
-        votes_auth.delete(votes_auth[index])
-      else
-        keep_vote = votes_auth[index]
-        index += 1
-      end
-    end
     if votes_auth.any?
+      votes_to_keep = []
+      keep_vote = votes_auth[0]
+      votes_to_keep << keep_vote
+      for vote in votes_auth
+        unless vote.user_id ==  keep_vote.user_id &&  vote.channel_id == keep_vote.channel_id
+          keep_vote = vote
+          votes_to_keep << keep_vote
+        end
+      end
+      votes_auth = votes_to_keep
       puts votes_auth.size.to_s + " latest votes_auth for tallying."
     end
     
     # In votes_non_auth, only count the latest vote from each ip on each channel.
     # For each [ip, channel_id], votes are in reverse chronological order,
     # so keep the first one in each group:
-    keep_vote = votes_non_auth[0]
-    index = 1
-    while votes_non_auth[index]  # i.e. until we have gone past the end of votes_non_auth array
-      if votes_non_auth[index].ip ==  keep_vote.ip &&  votes_non_auth[index].channel_id == keep_vote.channel_id
-        votes_non_auth.delete(votes_non_auth[index])
-      else
-        keep_vote = votes_non_auth[index]
-        index += 1
-      end
-    end
     if votes_non_auth.any?
+      votes_to_keep = []
+      keep_vote = votes_non_auth[0]
+      votes_to_keep << keep_vote
+      for vote in votes_non_auth
+        unless vote.ip ==  keep_vote.ip &&  vote.channel_id == keep_vote.channel_id
+          keep_vote = vote
+          votes_to_keep << keep_vote
+        end
+      end
+      votes_non_auth = votes_to_keep
       puts votes_non_auth.size.to_s + " latest votes_non_auth for tallying."
     end
     
