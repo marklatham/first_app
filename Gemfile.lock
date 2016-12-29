@@ -258,6 +258,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    rb-readline (0.5.3)
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
@@ -386,6 +387,7 @@ DEPENDENCIES
   rails-footnotes (>= 4.0.0, < 5)
   rails_apps_pages
   rails_layout
+  rb-readline
   rolify
   rspec
   rspec-mocks
@@ -400,3 +402,6 @@ DEPENDENCIES
   virtus
   whenever
   will_paginate
+
+BUNDLED WITH
+   1.11.2

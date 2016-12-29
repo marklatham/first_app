@@ -47,6 +47,7 @@ group :development do
   gem 'capistrano-chruby'
   gem 'rails_layout'
   gem 'rails_apps_pages'
+  gem 'rb-readline'
 end
 
 group :development, :test do
