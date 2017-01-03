@@ -2,7 +2,7 @@ rails:
   env: production
   app: www.infocoop
   domains:
-  - vaninfocoop.ca
+  - sofcoop.org
 
 deploy:
   directory: /var/www/{{ rails.app }}

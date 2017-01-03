@@ -1,26 +1,27 @@
 - provide :title, 'FAQ'
 
 h2 Frequently Asked Questions
-br
 
-h4 1. Who is organizing the Vancouver Info Co-op?
+h4 1. Who is organizing Sofcoop?
 
 p The people listed on our #{link_to('About/Contact page', '/about')}.
 
 h4 2. Why are you doing this?
 
-p We want to make a better world by empowering people with information. Large organizations, especially governments and corporations, often tend to concentrate power in a few people. We think organizations would serve people better, if people have good enough information to choose wisely, when spending money and when electing leaders.
-
-p An information co-op can be a first step in that direction. In its early stages, it can help members save money. As membership grows, the increasing pool of funds could buy other types of info like entertainment and software. Meanwhile, the co-op can set an example for how we could better inform voters in democracies and shareowners of corporations.
+p We want technology to serve everyone fairly. If technology is controlled by a limited number of people, that concentration of power might not serve the public interest. This software co-op aims to democratize the control of technology to counteract such concentration and make a fairer system. We expect this will:
+ul
+  li reduce annoying ads
+  li reduce monopoly power
+  li give us users more control of our personal info
+  li give us better software for less cost
 
 h4 3. How much will it cost?
 
-p Our initial plan is for each member to pay $1 a month into a pool for buying information. We will give an open invitation for providers of information to the co-op. Members will vote to divide the funding pool among the providers, giving them an incentive to provide useful information. We will kickstart this process with donated funds.
+p Our initial plan is for each member to pay $1 a month into a pool for buying info on which software to get and how best to use it. We will give an open invitation for providers of info to the co-op. Members will vote to divide the funding pool among the providers, giving them an incentive to provide useful information. Later we aim to expand beyond info to providing software licenses.
 
 h4 4. How can I find out more about this info co-op plan?
 
 ul
-  li Read the #{link_to 'Info Co-op Outline', '/pdf/InfoCoopOutline.pdf'}.
   li 
     - if user_signed_in?
       - if current_user.email_monthly
@@ -33,15 +34,15 @@ ul
       | Check the box for monthly updates when you 
       = link_to 'register for a free login', new_user_registration_path
     | .
-  li Email your questions to vaninfocoop[at]gmail.com.
+  li Email your questions to sofcoop@votermedia.org.
 
 h4 5. How are votes counted to determine each channel's share of funding?
 
-p Our voting system is very similar to that of Votermedia.org, so for now please read #{link_to 'their Voting FAQ', 'http://votermedia.org/faqs#Voting'}. We'll copy it here later. (Votermedia allocates funding to websites and blogs, whereas here at VanInfoCoop we allocate funding to info channels.)
+p Our voting system is very similar to that of Votermedia.org, so for now please read #{link_to 'their Voting FAQ', 'http://votermedia.org/faqs#Voting'}. We'll copy it here later. (Votermedia allocates funding to websites and blogs, whereas here at Sofcoop we allocate funding to info channels.)
 
 h4 6. Why should I create posts?
 
-p Creating posts is optional. You can benefit from being a member without creating any posts -- just pay $1 a month for log-in access to info that other members post. (As of January 2015, we have not yet built any payment systems on the website, so all access is free -- no charge. This outline of payments is what we are planning.)
+p Creating posts is optional. You can benefit from being a member without creating any posts -- just pay $1 a month for log-in access to info that other members post. (As of January 2017, we have not yet built any payment systems on the website, so all access is free -- no charge. This outline of payments is what we are planning.)
 
 p If you like, you can create posts to share info with other members. You can share your info for free, or you can try to get other members to pay you for it.
 
@@ -54,4 +55,3 @@ h4 7. How can I create posts?
 p Any logged-in user of this website can select "Create new post" from the user's drop-down menu in the top navigation bar. To let others see it in the #{link_to 'Posts Feed', '/feed'}, you need to click the post's "Publish?" checkbox, and give your real name on the "Edit account" page.
 
 p The "Create new post" page has a toolbar for formatting your post. If you want more complex formatting, you can bypass the toolbar and edit the post's html. For details on that, please see #{link_to 'Editing posts', editing_posts_path}.
-
