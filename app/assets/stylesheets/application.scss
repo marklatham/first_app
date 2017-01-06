@@ -6,8 +6,8 @@
  * @import works better than require -- see pivotallabs.com/structure-your-sass-files-with-import
  */
 
-// Override some bootstrap variable settings:
-@import 'variables';
+@import 'normalize';  // CSS reset from necolas.github.io/normalize.css
+@import 'variables';  // Override some bootstrap variable settings:
 
 // From vendor gems:
 @import 'bootstrap-sprockets'; /* Must import before bootstrap, else lose glyphicons. */
