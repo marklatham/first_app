@@ -1,7 +1,7 @@
 table.mall
   tr
     th.green Shares
-    th.centred Your Votes
+    th.center Your Votes
     th Channel Displays
   - @standings.each do |standing|
     - if standing.channel
@@ -19,9 +19,9 @@ table.mall
         td.rank-share
           .rank ##{standing.rank}
           .share #{number_with_precision(standing.share, :precision => 0)}%
-        td.mall-vote
+        td.vote
           - if voted_flag == 1
-            .you-voted
+            .green
               | You voted 
               = number_with_precision(voted_share, :precision => 0) + '%'
           div.form-group
@@ -29,7 +29,7 @@ table.mall
               = select_tag :share, options_for_select([['Vote:', ''], ['0%', '0'], ['10%', '10'], ['20%', '20'], ['30%', '30'], ['40%', '40'], ['50%', '50'], ['60%', '60']]), class: 'form-control', onchange: 'this.form.submit()'
               = hidden_field_tag :channel_id, standing.channel.id
         td
-          div.mall-display
+          div.display
             - if standing.channel.display
               - if standing.channel.display.content
                 = Loofah.scrub_fragment(standing.channel.display.content, :prune).to_s.html_safe

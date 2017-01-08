@@ -40,15 +40,10 @@ section {
 
 /////////// Customize styles for sofcoop.org: ///////////
 
-// Misc
-
-.mango-border {
-  border:3px solid $mango;
-}
-
-.border-3-10 {
-  border-radius: 10px;
-  border: 3px solid $mango;
+// Over-ride some bootstrap settings
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: 20px;
+	margin-bottom: 15px;
 }
 
 // Unordered and Ordered lists

@@ -1,0 +1,38 @@
+table.history {
+  margin:auto;
+  text-align: center;
+  td {padding: 0.3em 0.4em 0.3em 0.4em}
+
+  .header-channels {
+    font-weight: bold;
+    color: white;
+    background: #555;
+    td {
+      padding-top: 0.9em;
+      padding-bottom: 0.9em;
+      border: 2px #555;
+      border-style: none solid none solid;
+    }
+  }
+
+  .header-shares {
+    font-weight: bold;
+    background: $mango;
+    td {border: 2px solid $mango;}
+  }
+
+  .leftborder  {border-left:  2px solid $mango}
+  .rightborder {border-right: 2px solid $mango}
+
+  .share {
+    font-weight: bold;
+    color: $blue;
+  }
+
+  .award {
+    text-align: right;
+    color: green;
+    border-right: 2px solid $mango;
+  }
+
+}

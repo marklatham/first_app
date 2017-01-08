@@ -28,6 +28,7 @@ Infocoop::Application.routes.draw do
   get 'editing_posts',        to: 'visitors#editing_posts',    as: :editing_posts
   get 'faq',                  to: 'visitors#faq',              as: :faq
   get 'feed',                 to: 'posts#feed',                as: :feed
+  get 'history',              to: 'visitors#history',          as: :history
   get 'privacy',              to: 'visitors#privacy',          as: :privacy
   get 'terms',                to: 'visitors#terms',            as: :terms
 
