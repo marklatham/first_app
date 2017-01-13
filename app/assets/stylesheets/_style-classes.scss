@@ -1,6 +1,11 @@
 // Here I'm experimenting with violating a basic best practice of CSS,
 // by naming some classes by their style properties.
 
+.border-3-10 {
+  border-radius: 10px;
+  border: 3px solid $mango;
+}
+
 .center {
   text-align: center;
 }
